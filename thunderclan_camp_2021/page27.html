@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Warriors Cats Play - thunderclan-camp</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width" name="viewport"/>
+<style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote-border {
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__sticker {
+            width: 180px;
+            height: 180px;
+        }
+
+        .chatlog__sticker--media {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(e => hljs.highlightBlock(e));
+        });
+    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.8.1/lottie.min.js"></script>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__sticker--media[data-source]').forEach(e => {
+                const imageDataUrl = e.getAttribute('data-source');
+
+                const anim = lottie.loadAnimation({
+                  container: e,
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  path: imageDataUrl
+                });
+
+                anim.addEventListener('data_failed', () =>
+                    e.innerHTML = '<strong>[Sticker cannot be rendered]</strong>'
+                );
+            });
+        });
+    </script>
+<script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+<svg style="display: none">
+<symbol id="icon-attachment" viewbox="0 0 720 960">
+<path d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" fill="#f4f5fb"></path>
+<path d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" fill="#7789c4"></path>
+<path d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" fill="#f4f5fb"></path>
+<path d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" fill="#7789c4"></path>
+</symbol>
+</svg>
+</head>
+<body>
+<div class="chatlog">
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/421218098822119425/b1e4ab9bef791f3ba0bfa2985be1154c.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="421218098822119425" style="color: rgb(46,204,113)" title="SADIST#2125">debit</span>
+<span class="chatlog__timestamp">12-Feb-22 01:38 AM</span>
+<div class="chatlog__message" data-message-id="941961333669253141" id="message-941961333669253141" title="Message sent: 12-Feb-22 01:38 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><span class="pre pre--inline"> BLUEBELLKIT | LAURELSTAR </span> 
+
+        Bluebell watched Laurelstar practise the swipe, the tiny kitten looked at the warrior's paw, then her own small one. She flexed her paw for a moment, claws poking out, but quickly hidden away as her next words came. <em>"We don't train with our claws out."</em> She nodded. For a moment she didn't understand why she would say something like that, but then it clicked, <em>I could accidentally hurt someone, and if I'm practising in the nursery, I could hit a kit</em> 
+
+        She nodded along with her words, her mind softly worrying about other clans. Whilst she wanted to know how to fight, a part of her was scared at the idea of having to actually do it. 
+
+        She giggled at Laurelstars words, <strong>"The other clans will definitely run away when I grow big!"</strong>
+<span class="mention" title="agatedemon#5698">@prim</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">12-Feb-22 06:59 PM</span>
+<div class="chatlog__message" data-message-id="942223303127470140" id="message-942223303127470140" title="Message sent: 12-Feb-22 06:59 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Laurelstar} | Bluebellkit | present</div>
+Bluebellkit seemed pleased with the fact she was able to swipe properly now, mimicking her own display in her own fashion. The ThunderClan matriarch wasn’t going to show her anything complex, but she figured this would come up in the games she’d play with other kits. Why not show her the ropes so she could get used to it ahead of time? Give her an advantage over some of the kits in the nursery she was playing with, or at least put her on the same playing field as the older ones. Bluebellkit didn’t seem like the type to abuse the power she just granted her, and if she did, well she was sure the proper discipline would be issued. She didn’t want to hear of any kittens with torn ears and the like. However, she was sure it wouldn’t go that far. <strong>”Yep, just like how they start running the moment I show up. I’m sure they’ll be sprinting even faster the moment you appear!”</strong> she chuckled, her bushy tail swaying around behind her excitedly. She knew she was exaggerating, but why would she want to ruin a kit’s fun?
+
+<strong>”You’ll learn more when you become an apprentice, trust me. Any one of the warriors who may mentor you in the future are all talented and will ensure you’re going to be one of the best.”</strong> she always spoke very highly of her clanmates, and the ones who stood up against threats outside and within were all trustworthy. These were the most loyal group of warriors in the world, she believed, they were willing to give life and limb to protect their clan. She couldn’t thank them enough for everything they did, and how grateful she was to lead them… Now she was just being a softie.
+
+<span class="mention" title="SADIST#2125">@debit</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/204255221017214977/3b376fff30bfb0be0fac67003e0f8dcf.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="204255221017214977" style="color: rgb(46,204,113)" title="YAGPDB.xyz#8760">YAGPDB.xyz</span>
+<span class="chatlog__bot-tag">BOT</span>
+<span class="chatlog__timestamp">12-Feb-22 06:59 PM</span>
+<div class="chatlog__message" data-message-id="942223303681122314" id="message-942223303681122314" title="Message sent: 12-Feb-22 06:59 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace">Gave +1 Rep to <strong><span class="mention" title="SADIST#2125">@debit</span></strong></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/421218098822119425/b1e4ab9bef791f3ba0bfa2985be1154c.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="421218098822119425" style="color: rgb(46,204,113)" title="SADIST#2125">debit</span>
+<span class="chatlog__timestamp">13-Feb-22 04:25 AM</span>
+<div class="chatlog__message" data-message-id="942365881349058590" id="message-942365881349058590" title="Message sent: 13-Feb-22 04:25 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace">(end here?</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">13-Feb-22 03:24 PM</span>
+<div class="chatlog__message" data-message-id="942531657938927676" id="message-942531657938927676" title="Message sent: 13-Feb-22 03:24 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace">(Sure ^^)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">13-Feb-22 09:30 PM</span>
+<div class="chatlog__message" data-message-id="942623917414174730" id="message-942623917414174730" title="Message sent: 13-Feb-22 09:30 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Coyotepaw} | Wrenpaw | present</div>
+Time seemed to be rolling by slowly, at least for him. In the moons since the battle the tom was just going about his days in autopilot, a blank expression on his features half the time. The battle had taken a toll on him, on his family. He continually checked in on his mother, trying to see if he could elicit some sort of reaction from her— that somehow it would trigger her memory. That she would remember him.
+
+<em>What a way to be almost entering warriorhood.</em>
+
+The tom let out a sigh as his shoulders sagged, not even touching the mouse he’d picked up from the fresh-kill pile— it was practically skin and bones anyways, almost no actual meat on there… Maybe he just wasn’t hungry, he’d go put it back in a moment. Coyotepaw was just swimming in unpleasant thoughts and memories… Then he recalled something, Wrenpaw. She too faced an ordeal for moons, and he never stopped to check in on her after it all. He assumed she wanted space after it all came out about her acting as a spy on their clan’s behalf. Couple that with the situation regarding his mother, it caused them to give each other space. Still, he owed it to his friend that he check on her, at least whenever he saw her next.
+
+<span class="mention" title="tremb#3692">@tremb</span> (sorry for starting this so late ^^” )</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/395274063611953154/f5406857dcf23847106738b88fa0d66d.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="395274063611953154" style="color: rgb(255,213,83)" title="wild#9017">wild™</span>
+<span class="chatlog__timestamp">14-Feb-22 03:55 PM</span>
+<div class="chatlog__message" data-message-id="942901774040326155" id="message-942901774040326155" title="Message sent: 14-Feb-22 03:55 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline language-diff">- ───────── CARDINALSPARK !! // WARRIOR OF THUNDERCLAN</div>
+
+Life among Thunderclan had finally seemed to settle since the war against the Dark Forest, rebuilding their clan and lives and now carrying on in general peace. Though the challenges of leaf-bare still remained, it was clear that the harsh season would be coming to an end in due time, as prey was becoming more plentiful, the sun shone brighter and the days seemed a little less chilly. Even so, snow still laid upon the earth and icicles reached down from the branches overhead. Nonetheless, it was still pleasing to be returning to that which was familiar, normal even.
+    A russet figure appeared slinking into the camp, amber eyes bright as he looked over the area he called home. A sigh escaped from him as he padded toward the fresh-kill pile, dropping his catch among it before turning away. He stood idly as he took a moment to take in the sight of the camp once more - it was quiet. The occasional figure could be seen among it, here and there a mentor and apprentice was readying for a training session, while others chatted among themselves. The warrior decided he ought to take what time he could to rest for a few moments, lest he be dragged along on some sort of patrol or approached by another clanmate. So, he headed over toward a fairly open spot, before lying down and resting his head on his paws.
+
+<span class="mention" title="BrokenBell#9477">@Dormamoon</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/446509654378545183/6c8ca5f7214003da45b9f362e2749a0e.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="446509654378545183" style="color: rgb(255,213,83)" title="BrokenBell#9477">Dormamoon</span>
+<span class="chatlog__timestamp">14-Feb-22 08:20 PM</span>
+<div class="chatlog__message" data-message-id="942968667350634506" id="message-942968667350634506" title="Message sent: 14-Feb-22 08:20 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">Honeydrop // Cardinalspark</div>
+
+The creamy feline slipped out of the warriors den, having already gone hunting earlier, she had decided to take a short nap in her nest to rest her eyes. Ever since the fight against the Dark Forest, it had been a bit difficult for her to sleep, but now that everything seemed to be slowly getting back to normal, she hoped that would end up changing. Slowly glancing around camp, her chocolate gaze landed on a russet tom lounging in an area by himself. A small smile adorned her face before she padded over to him. 
+<strong>"Hey Cardinalspark."</strong> She murmured softly as she approached, not wanting to disrupt him too much in case he wanted to be alone. It had been hard for them to find any alone time together since the battle, but that was to be expected with how intense everything had been. And plus they both had received injuries and had needed to recover in their own time before returning back to normal duties. <strong>"How are you today?"</strong> She asked with a sheepishly glance. 
+<span class="mention" title="wild#9017">@wild™</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">15-Feb-22 07:05 PM</span>
+<div class="chatlog__message" data-message-id="943311984781303818" id="message-943311984781303818" title="Message sent: 15-Feb-22 07:05 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Laurelstar} | Iceheart | present</div>
+All was finally at peace for her clan. Their camp was restored to its former glory, with some marked improvements, and all those who suffered injuries had recovered-- physically speaking at least. She knew the mental and emotional turmoil the battle had wrought upon her clanmates, as well as herself, would not go away so easily. She knew that it would take time for many to truly adapt to some sense of normalcy after losing so many loved ones, herself included. Her own family was coping, sticking close together, though she knew her kits were still struggling. She admired their tenacity in the face of a tragedy, but she wished that they never had to cope with losing their mother at so young of an age... Just like her.
+
+One thing she was thankful for was that the leader she had served under had survived. Even if she didn't remember her.
+
+The tortoiseshell sovereign could see the lynx-point down in the camp from where she stood upon the Highledge, gazing down at her clanmates below. She had given her some space since the battle, to try and allow her to get her own bearings on the world she was thrown into. No need to overwhelm someone in an amnesiac state, to Iceheart, she really was nothing more than a stranger, or perhaps an acquaintance who had addressed her as leader once. Now she didn't know what to call her, would they ever be friends again? She prayed they could be, even if she was now the one in charge of leading the clan, and Iceheart served her as a warrior.
+
+<em>I pray she regains some of her memories, there are cats here who love and cherish the time they spent with her. I want her to know what her sacrifice meant to me.</em>
+
+She wouldn't even be standing on this rock if it weren't for her.
+
+Taking a deep breath, the tortoiseshell began to descend her throne and into the clearing down below, her gaze trained on the pale-furred she-cat. Approaching her slowly, Laurelstar greeted her by name: <strong>"Hello, Iceheart. Can we talk?"</strong>
+<span class="mention" title="Iceywicey#3780">@Ice</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/231502872297078804/c84de6e5cf3c3288948a581986a61221.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="231502872297078804" style="color: rgb(46,204,113)" title="Iceywicey#3780">Ice</span>
+<span class="chatlog__timestamp">16-Feb-22 08:33 AM</span>
+<div class="chatlog__message" data-message-id="943515343643639838" id="message-943515343643639838" title="Message sent: 16-Feb-22 08:33 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace">test)</span>
+</div>
+</div>
+</div>
+<div class="chatlog__message" data-message-id="943515443069591552" id="message-943515443069591552" title="Message sent: 16-Feb-22 08:33 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{ ~ Iceheart ~ // A Forgotten Friend }</div>
+These past moons were tough on Iceheart. Laying low, the silvery-white femme slowly adjusted to the daily life of the Clan under the close watch of Bearmask. She had stayed away from the funerals held for the lost warriors in the battle.  She didn’t remember them. She didn’t know them. She couldn’t grieve for them. She didn’t even know her own kits! The awkwardness to that discovery has stuck quite prominently. Staying quiet was the best thing she could do; a silent presence barely flickering within the Clan. 
+
+Iceheart’s head shot up immediately when her name was called. A slow blink portrayed her confusion as ThunderClan’s leader, Laurelstar, summoned her. She hadn’t spoken to her ever since the lynx-point had first woken up after the battle. It was best that way especially for a leader as busy as her. 
+
+<em>Why does she want to speak with me?</em> It was quite a wonder. Besides her curiosity, she couldn’t refuse her leader’s request. Standing up obediently, Iceheart nodded in confirmation. <strong>” Of course.”</strong>
+<span class="mention" title="agatedemon#5698">@prim</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">16-Feb-22 08:46 AM</span>
+<div class="chatlog__message" data-message-id="943518820637745182" id="message-943518820637745182" title="Message sent: 16-Feb-22 08:46 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Laurelstar} | Iceheart | present</div>
+A silent presence was satisfying for some warriors, but for a cat like Iceheart, she didn’t think it suited a warrior of her caliber. A hero of their clan. A leader who gave up her lives, one of her souls, to allow her clan to triumph over their enemies. She couldn’t be more thankful for her actions, and she owed it to her to ensure she was recovering— to still consider her a friend. <strong>”I just wanted to chat, no need for the formalities.”</strong> a large white mitten gestured to the way the lynx-point she-cat had straightened her posture in her presence. She commanded respect, but she didn’t need to hear an audible <em>crack</em> every single time she addressed her clanmates.
+
+<strong>”How are you feeling?”</strong> her head slightly tilted, her gaze showcasing hints of concern— though it was evident she was pleased to see the pale she-cat out and about in camp. She didn’t want to swarm her with questions, to bombard her with reminders of memories that were from the leader’s perspective, and not her own. Laurelstar had reacted out of panic during the battle, shocked by the fact she didn’t remember her. The cat whose life she traded the rest of her lives and her soul for. <em>I can’t hold that against her, she didn’t know that would happen. I owe it to her to keep the clan safe, that includes her.</em> her ears twitched as she waited for some form of answer. Her thoughts were just swimming around in her mind erratically, bumping into each other or merging  into amorphous shapes like a  school of sardines out in the ocean.
+
+<span class="mention" title="Iceywicey#3780">@Ice</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250106765788708874/f15d875e164024adcae72cb19493d5dc.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250106765788708874" style="color: rgb(255,138,34)" title="~Swift~#2500">~Swift~</span>
+<span class="chatlog__timestamp">18-Feb-22 08:30 AM</span>
+<div class="chatlog__message" data-message-id="944239430556868608" id="message-944239430556868608" title="Message sent: 18-Feb-22 08:30 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><span class="pre pre--inline">∘◦ AlerceClaw ◦∘</span>
+<span class="pre pre--inline">&amp; Tigerpaw</span> <span class="mention" title="Goosey !!!#8608">@goose</span> 
+
+       Not innately someone with a stern demeanor, Alerce needed only a second of relief as he made his way down to camp for the second time this day. The camp held so many memories - as it would for anyone his age with the life he governed. The life he invited so many others into. But alas - and not that he was old, in fact he was a middle age warrior. Alas. He was the last one standing. Everyone he had ever known to be a friend or anything of the sort had died or resorted to something like IceHeart was now. This brobdingnagian was still unsure with how IceHeart had gotten to the state, but he knew the fae he knew before no longer resided in that husk anymore. He was unfamiliar to her just as much as she was to him. Though he substantial advice was still remembered. The one IceStar had given him. Not IceHeart. See, there was a thing about memories. They were always only your mind replaying an important event. Only ever that. Emphasizing the past and how quickly time can fly. And if you let time fly by, you will come to realize how many regrets you would gain. 
+    But enough of that, Tigerpaw had to be analyzed on this training session. He already got quite enough from just greeting her earlier. She was the clans princess. And as tragic as it was; being raised by one parent only since recently the other had passed, Tiger has yet to portray any symptoms to that. Even something as simple as no reaction at all can say something about her. But for now; she remained a timid, ambitious, and nervous little thing in this bachelors mind. As some apprentices normally start out. 
+    Unfortunately, that will have to change if they were to successfully get through training with him.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/718974084935057489/87cec92cc98578584ac1b7825b19a939.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="718974084935057489" style="color: rgb(255,138,34)" title="tremb#3692">tremb</span>
+<span class="chatlog__timestamp">19-Feb-22 09:47 AM</span>
+<div class="chatlog__message" data-message-id="944621176112709672" id="message-944621176112709672" title="Message sent: 19-Feb-22 09:47 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><strong>Wrenpaw</strong>
+<u>ThunderClan Apprentice</u>
+
+The days all seemed to morph together as Wrenpaw awaited the day she would finally become a warrior, though she wasn’t feeling as excited about it as she had in the past. She couldn’t pinpoint exactly why, and she knew that she <em>should</em> be happier,  but she found herself feeling rather indifferent. Wrenpaw knew she was ready. In fact, she was more than ready. Her injuries sustained from the dark forest battle had put a delay on her training, which had held her back nearly two moons. Now she was back and stronger than ever, physically at least. Mentally, the dark thoughts of what had happened and the nightmares still took their toll on the young she-cat, though she did her best to keep all of that beneath the surface. The only thing that really <em>looked</em> different about her was her scarred appearance. Nearly half her ear was gone, and thick scars could be seen on her neck and around her shoulders. Still, she carried them proudly. She liked to think they make her look more intimidating, which would be a good thing considering she’d always looked as soft and gentle as a newborn. 
+
+As she she-cat slipped from the apprentices den, her dark amber gaze landed almost immediately on Coyotepaw, and right away she felt overcome with guilt. She knew he’d been going through a difficult time with his mother after the battle, and she’d chosen to give him space rather than be present. It was partially because she had needed time to get control of her own traumas, but also because she didn’t know how to help her friend and she worried she’d only bother him. She was always so desperate to help those around her, especially those that she cared for deeply, but mostly the things she wanted to help with were things she was powerless against. Still, there wasn’t a day that went by where she didn’t think about the tom. He looked quite miserable now, poking at his mouse. Wrenpaw hurried over to him, trying her best to look cheerful in hopes it would make him feel a little better. <strong>”Hi,”</strong> she said softly, sitting down and wrapping her tail around her paws. <span class="mention" title="agatedemon#5698">@prim</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">19-Feb-22 10:03 AM</span>
+<div class="chatlog__message" data-message-id="944625176971214869" id="message-944625176971214869" title="Message sent: 19-Feb-22 10:03 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Coyotepaw} | Wrenpaw | present</div>
+Almost as if he’d summoned her with a mere thought, Wrenpaw appeared before him, greeting him quietly. His brown-tipped ears flickered as he picked his head up, meeting her gaze. Even in a minuscule amount, he looked visibly less drained upon seeing his friend, and a phantom of a smile could be seen on his muzzle. <strong>”Hey, Wrenpaw.”</strong> he returned the greeting, his voice was low and he stared back down at his uneaten mouse, before he pushed it towards her. <strong>”Do you want this? I grabbed it and I just realized I’m not really hungry.”</strong> that wasn’t exactly true, this season left everyone hungry, skinnier than usual as many had less meals than they would have had before. For cats like him, with their lean, lanky builds, he looked more bony than usual— more of his ribs poked out. Not emaciated, not yet anyhow, but right now with all his anxiety-ridden thoughts, he just couldn’t stomach anything right about now. Better it went to someone else than to be wasted entirely.
+
+He let out a small sigh, his sage-colored gaze sweeping across the repaired camp, and then to the new scars he saw on her form. It was like the battle never had happened, so many were returning to their normal routines, just enjoying their existences and being <em>alive</em>. Yet there were still reminders everywhere, including his own scars he had sustained in the fight. <strong>”How’ve you been? Its been a long time since we talked last.”</strong> it was a bit awkward, but he didn’t avoid her because he was upset with her. He understood why she had to keep that secret from him now. It was for her own safety, but even then, she was detained by those evil traitors, she could have died. He was glad she had made it through, they were best friends, had been since they were kits. Of course he was glad she was here, that she was all right.
+
+<span class="mention" title="tremb#3692">@tremb</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/231502872297078804/c84de6e5cf3c3288948a581986a61221.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="231502872297078804" style="color: rgb(46,204,113)" title="Iceywicey#3780">Ice</span>
+<span class="chatlog__timestamp">19-Feb-22 10:40 AM</span>
+<div class="chatlog__message" data-message-id="944634580202311710" id="message-944634580202311710" title="Message sent: 19-Feb-22 10:40 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{ ~ Iceheart ~ // A Forgotten Friend }</div>
+A quick flick of her ear indicated her surprise to Laurelstar’s proposal. The lynx-point followed, snow crunching under her paws. She couldn’t help but admire the proud composure of the ginger-and-white. Her dedication to the Clan was clear. <em>She must have been a very good deputy.</em> If only she could remember. The back of her head gave a slight ache. Iceheart swallowed uneasily, fighting back the tears of frustration every time there was no recollection. 
+
+She barely heard Laurelstar’s question about her current well-being. Looking up, Iceheart gave an empty blink. <strong>” What were you asking?”</strong> Her tufted ears folded tightly back against her head in embarrassment. The two of them were talking for the first time in many moons and this was how it started off. The pale fur on her shoulders prickled uneasily. How she wished to escape this very moment! 
+<span class="mention" title="agatedemon#5698">@prim</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">19-Feb-22 11:00 AM</span>
+<div class="chatlog__message" data-message-id="944639487688986654" id="message-944639487688986654" title="Message sent: 19-Feb-22 11:00 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Laurelstar} | Iceheart | past II</div>
+To see her behave so defensive, almost as if she were about to run made the leader take a step back for a moment— more hints of concern flooding her gaze as she saw the lynx-point’s fur rise up a bit out of uneasiness. <strong>”I was just wondering how you were feeling. Are you recovering after the battle?”</strong> she had sustained wounds as Icestar, and while losing lives would heal the grievous ones, she assumed she too had sought treatment for the less pressing ones afterwards. Everyone had been bloodied, battered, and bruised. It was a fact of life when it came to battle. No one was immune to injury, not unless they had some form of power granted to them from StarClan that shielded them from harm.
+
+<em>But that’s nearly impossible. Haven’t had a case of that for hundreds of generations, in any clan for that matter.</em>
+
+Still, Iceheart had been a special case, having two souls encased in one body. It was a strange and bizarre occurrence, but it was able to keep her once-friend alive, and she was thankful for it. Now it was up to them to help her back onto her paws and try to recover lost time and memories. She owed it to her for everything she had done for both her and the clan. <strong>”You don’t have to answer me, I know it must be difficult getting used to this”</strong> but she truly didn’t understand. She wasn’t the one with lost memories.
+
+<span class="mention" title="Iceywicey#3780">@Ice</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/231502872297078804/c84de6e5cf3c3288948a581986a61221.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="231502872297078804" style="color: rgb(46,204,113)" title="Iceywicey#3780">Ice</span>
+<span class="chatlog__timestamp">20-Feb-22 09:31 AM</span>
+<div class="chatlog__message" data-message-id="944979501413171200" id="message-944979501413171200" title="Message sent: 20-Feb-22 09:31 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{ ~ Iceheart ~ // A Forgotten Friend }</div>
+A twist of guilt strangled her chest at the worry in the leader’s mismatched eyes. <strong>” I don’t mind answering.”</strong> She was relieved that Laurelstar was understanding of her situation. The fur on her shoulders settled back down. 
+
+<strong>” I’ve been good,”</strong> Iceheart assured. <strong>” It’s been-”</strong> she searched for the right word, <strong>” tough.”</strong> The lynx-point wasn’t going to lie about this. Even if she did, no one would believe her. <strong>” But, I’m managing.”*</strong> 
+
+Her sea-foam eyes dragged over her own pristine silvery coat. <strong>” I was able to make it out with no injuries. When I asked Marigolddust, he said it was because I lost a life, many lives, and my body regenerates every time it does so.”</strong> It was still a confusing concept. She couldn’t imagine having nine lives nor Laurelstar who stood right before her. Apparently, everyone is bestowed nine lives once they rise to the ranks of a leader. Well, nearly everyone. The gentle medicine cat had mentioned a few exceptions to that rule. 
+<span class="mention" title="agatedemon#5698">@prim</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">20-Feb-22 09:50 AM</span>
+<div class="chatlog__message" data-message-id="944984244999036978" id="message-944984244999036978" title="Message sent: 20-Feb-22 09:50 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Laurelstar} | Iceheart | past II</div>
+She could see that the ordeal had worn Iceheart down, being thrown into the fray of a wild, disorganized conflict, not knowing who was friend or foe would be disorienting for sure. Laurelstar was thankful she had made it out without any injuries sustained, the one benefit of having nine lives, if the wound wasn’t grievous enough, one could be healed from it in due time. Still, it didn’t mean witnessing a cat die and come back from the dead wasn’t a bit disturbing, she’d seen it happen a few times with Icestar. To think she’d be going through something like that eventually, her luck would run out sometime.
+
+<em>To know what death is like, and to come back from it? Its scary.</em>
+<strong>”If you ever want to talk about it, I’m always here. I can even try to explain a few things if you want, but I’m not going to make you listen to me.”</strong> a faint, half-hearted smile formed on her features, she genuinely sympathized with the she-cat she was conversing with. She prayed she could heal from this, to recover in any way possible, just to provide some clarity to her. <strong>”The most I can really talk about is the time I spent serving under you as a warrior and a deputy though, before that we actually didn’t talk much. You knew my father though.”</strong> she wouldn’t remember Featherpelt, and her heart lurched for a moment. Her father’s death was tough on her, he was the closest member of family she had in the clan, besides her children. Featherpelt was practically beloved by almost all cats he spoke with, kind and gentle, a rare thing to find nowadays.
+
+<span class="mention" title="Iceywicey#3780">@Ice</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/718974084935057489/87cec92cc98578584ac1b7825b19a939.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="718974084935057489" style="color: rgb(255,138,34)" title="tremb#3692">tremb</span>
+<span class="chatlog__timestamp">22-Feb-22 10:56 AM</span>
+<div class="chatlog__message" data-message-id="945725779461959680" id="message-945725779461959680" title="Message sent: 22-Feb-22 10:56 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><strong>Wrenpaw</strong>
+<u>ThunderClan Apprentice</u>
+
+Wrenpaw was glad that she could bring a smile to her friends lips, but it was a mere ghost of his normal smile. She hadn’t expected much different, truthfully. Coyotepaw had endured a lot in the recent moons, and it was unlikely that any cat would be cheerful after having such experiences. She wanted the tom to know how much she cared, though she didn’t really want to bring up such a sensitive subject. Instead, she simply stared back at him for a while, amber gaze brimming with emotion. For someone who usually had so much to say, Wrenpaw was unusually silent, fumbling through words in her mind. She looked from her friend to the scrawny mouse at his paws and then back again, biting her lip softly. He <em>needed</em> to eat, but he didn’t have any appetite, and she could understand that. Still, she wondered if she could coax him to even have a bite. <strong>”I ate this morning,”</strong> she lied quickly. Wrenpaw was a notoriously bad liar, unless of course she felt like she was lying to help someone she cared about. <strong>”It is tiny, though. Maybe we could share? It’s no more than a couple bites a piece anyways.”</strong> She observed. Her stomach growled audibly, her face flushing as embarrassment washed over her. As unappetizing as the mouse was, it was still food, and as much as she might deny it, the apprentice was quite hungry. 
+
+She shifted a bit on her paws, her gaze quickly finding anywhere else to rest besides upon Coyotepaw. 
+
+<em>How’ve you been?</em>
+
+Despite the time that had passed, the golden furred she-cat still wasn’t certain how to answer that question. <strong>”Well I’ve been… better. I still have nightmares but good luck finding many clanmates that don’t.”</strong> She said with a small shrug. She was still plagued with a plethora of bad memories, but at least the actual threat was gone. <strong>”I’m sorry for keeping my distance. It’s just, everyone who wasn’t there seems to want to know what it was like being a spy, like it was something exciting or something to be proud of. I didn’t want to tell anyone, at least not until I told you. I promised I’d tell you when I could, but I’m still sorry I kept it from you.”</strong> She began. She traced a single claw to and fro across the ground, trying to distract herself from the building anxiety that she felt. She brought her gaze back to her friend, for a few moments, at least. 
+
+It wasn’t like her trauma outweighed his in any way. Sure, she’d seen plenty of cats die, but none that she held close. She had been lucky in that sense. Even the fact that she’d nearly died didn’t seem to hold a candle to what some of her clanmates had lost. <strong>”I’m sorry for what happened. How is she doing? Your mother, I mean. More importantly, how are you holding up?”</strong> Wrenpaw knew there was no real way she could help her friend in his struggle, but at least she could be there for him to show support. He probably had a lot of things on his mind that he was holding onto. <span class="mention" title="agatedemon#5698">@prim</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/395274063611953154/f5406857dcf23847106738b88fa0d66d.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="395274063611953154" style="color: rgb(255,213,83)" title="wild#9017">wild™</span>
+<span class="chatlog__timestamp">22-Feb-22 11:41 PM</span>
+<div class="chatlog__message" data-message-id="945918342034780211" id="message-945918342034780211" title="Message sent: 22-Feb-22 11:41 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline language-diff">- ───────── CARDINALSPARK !! // WARRIOR OF THUNDERCLAN</div>
+
+Now with seemingly peaceful moons ahead, the russet warrior would have more than enough time to recover from the battle. At some point, the tom's eyes had managed to flutter close in the following moments after he'd settled down, leaving him in a partial slumber. The rays of the sun above danced upon the reddish pelt, causing it to glow a bright, almost red-orange. It was a welcoming feeling despite the snow underneath him and he would gladly treasure such a feeling for as long as he could. Though this would quickly come to an end beforelong - a sudden voice breaking into his light moment of sleep, stirring him awake quite easily.
+    Blinking, the tom's gaze fell upon the familiar, cream-colored pelt ot Honeydrop. His whiskers quivered for a moment as the tom raised his head, allowing for a yawn to escape him. <strong>"Hello, Honeydrop. Caught me at a rather...unprofessional time."</strong> he replied in turn, a playful smile upon his face. <strong>"I assure you though, I had done some duties earlier so I am indeed far from slacking, so no worries there."</strong> he added after a moment, with a light chuckle.
+    <strong>"Anyways...I'm doing alright. Hunted a bit earlier and then settled down for a short rest. How about you?"</strong> he inquired, forcing himself up into a sitting position before stretching out his limbs.
+
+<span class="mention" title="BrokenBell#9477">@Dormamoon</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/395274063611953154/f5406857dcf23847106738b88fa0d66d.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="395274063611953154" style="color: rgb(255,213,83)" title="wild#9017">wild™</span>
+<span class="chatlog__timestamp">23-Feb-22 12:08 AM</span>
+<div class="chatlog__message" data-message-id="945925174073655296" id="message-945925174073655296" title="Message sent: 23-Feb-22 12:08 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline language-fix">──────────────── 𝐅𝐋𝐈𝐂𝐊𝐄𝐑𝐅𝐎𝐗 // THUNDERCLAN WARRIOR</div>
+
+It was rather early this particular morning, the golden disk of the sun just beginning to rise upon the horizon, signaling that dawn had arrived. Morning frost still clung onto the various surrounding plants and earth alike, though with the snow already laying upon the ground, it wasn't easy to spot at first glance. There was the occasional sound of something skittering about among the undergrowth or trees, but in general, the morning was silent; save for the twittering and chirping of birds.
+    A golden-shaded figure appeared at the entrance to the warriors den, pale eyes scanning the rather empty camp before him. A cat could be seen here and there, but a majority of the tom-cat's clanmates were still among their dens. Nonetheless, the warrior padded out into the camp, toward the fresh-kill pile to grab something for himself. The tom then hurried away with it, settling down a short distance away before digging into it.
+
+<span class="mention" title="raven_wolf#7286">@raven</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/942565901746720849/c7865b69623ae7592e5b356b9dbdaa3f.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="942565901746720849" style="color: rgb(46,204,113)" title="raven_wolf#7286">raven</span>
+<span class="chatlog__timestamp">23-Feb-22 09:12 AM</span>
+<div class="chatlog__message" data-message-id="946062045869133854" id="message-946062045869133854" title="Message sent: 23-Feb-22 09:12 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><span class="pre pre--inline"> p a l e l i l l y | thunderclan </span>
+
+The flickering sun peeked over the white horizon, snow glistening as the light projected against it. A bicolored gaze watched over the calm campsite with solemn caution. Her large audits swiveled back, before circling forward once more. Palelilly hadn't slept a wink, her brain racing with questions revolving her sister's disappearance. Why did nobody seem to care that her sister was gone but her? The pale calico femme was conflicted. Her brows furrowed as she watched a tom rush away from the fresh kill pile as if ravenously hungry. 
+
+Palelilly slowly made her way to the pile, grabbing a small bird for herself before peeking over towards the brute once more. Figuring a conversation could never hurt, the bubbly femme pranced over, her tail held high. She sat about a cat's length away, and began picking feathers from her prey in order to get a decent bite. "G'morning!" She meowed after a while towards the cat; she believed she remembered his name to be Flickerfog? No- Flickerfox? Palelilly couldn't be sure. She curled her long tail over her paws and took a satisfying bite of the bird. 
+<span class="mention" title="wild#9017">@wild™</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/446509654378545183/6c8ca5f7214003da45b9f362e2749a0e.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="446509654378545183" style="color: rgb(255,213,83)" title="BrokenBell#9477">Dormamoon</span>
+<span class="chatlog__timestamp">24-Feb-22 10:19 AM</span>
+<div class="chatlog__message" data-message-id="946441166705000538" id="message-946441166705000538" title="Message sent: 24-Feb-22 10:19 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">Honeydrop // Cardinalspark</div>
+
+
+A sheepish look adorned her features as the creamy feline realized she had ended up disturbing the poor tom’s rest. <strong>”I’m really sorry, Cardinalspark. I had not meant to disrupt your nap. I’m sure you’re really tired, but I just wanted to check in on you.”</strong> She admitted softly, a shy smile on her face as she gazed at him with her chocolate orbs. She felt bad about waking him up, but she supposed there was no going back now, though she would not linger long so he could quickly get back to his resting. Hearing his comment, she purred softly in response as she giggled faintly. <strong>”I do not doubt your lack of fulfilling duties. You’re the last cat that I would think of who would skip out on their warrior duties.”</strong> She mused, settling in her spot. 
+
+<strong>”I was on border patrol earlier, and then did some hunting a little bit ago to try and help add to the fresh-kill pile. I can’t wait for the warmer weather to return so everyone’s bellies will be filled again.”</strong> Honeydrop murmured softly, knowing how the colder moons was always hard on everyone, especially the elders and the kits, and even though they were always looked after, she still couldn’t help but worry. It was just the type of feline she was. 
+<span class="mention" title="wild#9017">@wild™</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">24-Feb-22 11:29 AM</span>
+<div class="chatlog__message" data-message-id="946458868836368405" id="message-946458868836368405" title="Message sent: 24-Feb-22 11:29 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Coyotepaw} | Wrenpaw | present</div>
+While his injuries were nowhere near as severe as hers was, time had taken its toll on this young, soon-to-be warrior. Absent-mindedly going through his training, just trying to count the days until he would receive his warrior name. Still, it was clear he was simply just <em>out of it</em>. Just tired, scared for the future because he didn’t know if things ever could be the same again, for anyone. It was a giant unknown, something he couldn’t work through with his own logic alone.
+
+<strong>”It’s fine Wrenpaw, I’m not upset you didn’t tell me. I can understand why you couldn’t.”</strong> he flashed her a sympathetic gaze, his ears flickering as he let out a small sigh. Of course he wanted to know, he could have tried to help her, but she would have been putting herself in danger. He wouldn’t want that in the slightest. Then, the question about his mother caused him to pick his head up a bit, and he visibly grew a bit more uncomfortable. Not because she had asked, but the situation as a whole was painful for him. <strong>”She still doesn’t remember me.”</strong> he sounded drained, exhausted in his attempts to try and jog her memory. Trying to have her remember his collection habits, who his siblings were, trying to help his father out with triggering memories for her. Nothing was changing, and he was panicking at the thought that his mother may never ever remember him— her son. That was the biggest beast preying on his subconscious currently, that was what was weighing down on his mind, distracting him.
+
+He just wanted to know if she could ever see him as her son again. To somehow remember.
+
+<strong>”I don’t know what’s going to happen, its just… It’s bothering me and I keep thinking that she may never get her memories back. My father has been taking care of her a lot but there’s only so much one cat can do. I’m worried for both of them.”</strong> he spoke highly of his family, he cared deeply about them. Even if he wasn’t the mostly outwardly affectionate cat in the world, he still regarded the cats he had deep connections to with admiration. This situation was so dire and grim that it was evoking bigger reactions from him, he was <em>petrified.</em>
+<span class="mention" title="tremb#3692">@tremb</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/231502872297078804/c84de6e5cf3c3288948a581986a61221.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="231502872297078804" style="color: rgb(46,204,113)" title="Iceywicey#3780">Ice</span>
+<span class="chatlog__timestamp">24-Feb-22 01:35 PM</span>
+<div class="chatlog__message" data-message-id="946490605326991372" id="message-946490605326991372" title="Message sent: 24-Feb-22 01:35 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{ ~ Iceheart ~ // A Forgotten Friend }</div>
+Iceheart felt gratitude towards the offer. She was curious about her former memories and wondered what she was like as ThunderClan’s leader. How was she like to Laurelstar? What relationship did she have with Laurelstar’s father? She didn’t even know his name! The silvery-white molly’s positive attitude dimmed. Would it really help if she knew all that? Would it bring up painful memories best left forgotten? Maybe it was better for her to restart with a clean slate. 
+
+<strong>” I’m scared of knowing about my past life,”</strong> she admitted carefully. <strong>” I don’t know…”</strong> Her voice trailed off, hesitance lacing her tone. <em>Should I really say it?</em> However, some instinct inside her assured her that Laurelstar was someone she could trust unconditionally. <strong>” I don’t know if it matters if I knew about it or not. I don’t want others to think I can be that same cat I was before just because I now know about my past.”</strong>
+<span class="mention" title="agatedemon#5698">@prim</span></span>
+<span class="chatlog__edited-timestamp" title="24-Feb-22 01:36 PM">(edited)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">24-Feb-22 08:45 PM</span>
+<div class="chatlog__message" data-message-id="946598764259467294" id="message-946598764259467294" title="Message sent: 24-Feb-22 08:45 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Laurelstar} | Iceheart | past II</div>
+She could understand why the apprehension the lynx-point was experiencing was occurring. This could have been an opportunity in disguise, for the soul who had laid dormant within the body she shared with that of Icestar to finally experience life. She didn’t know the pain or the harsh experiences her predecessor knew of, a fresh, clean slate. Yet that also came with a price, the relations she had with many cats all at once were also seemingly starting back up at square one… Could it ever truly be the same as it was? Would they ever be the same friends again?
+
+<em>I pray to StarClan it can be so.</em>
+<strong>”I’m not saying you should act the same, that’s a choice for you to make… Still, don’t you feel entitled to know what happened?”</strong> she meant it in a way that she deserved to know what happened to her, it was something <em>she</em> experienced. Laurelstar blinked, slightly frowning as she let out a sigh. She didn’t want to overstep her bounds, StarClan forbid she make things worse because she treated the situation with less sensitivity than she should have. <strong>”I know it’s scary for you, and you should know there are cats who are looking out for you. They care about you, and want to know that you’re going to be okay.”</strong> she spoke with sincerity, curling her bushy tail around her frame. Her gaze absent-mindedly looked up to the sky for a moment, wondering what else was to come for them. So many things to worry about all at once. It was hard to keep track of it.
+
+<span class="mention" title="Iceywicey#3780">@Ice</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/395274063611953154/f5406857dcf23847106738b88fa0d66d.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="395274063611953154" style="color: rgb(255,213,83)" title="wild#9017">wild™</span>
+<span class="chatlog__timestamp">25-Feb-22 10:10 AM</span>
+<div class="chatlog__message" data-message-id="946801316452270180" id="message-946801316452270180" title="Message sent: 25-Feb-22 10:10 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline language-fix">──────────────── 𝐅𝐋𝐈𝐂𝐊𝐄𝐑𝐅𝐎𝐗 // THUNDERCLAN WARRIOR</div>
+
+As time passed, more felines began to appear among the camp, gathering into various clusters or settling in pairs, save for the lone feline scattered about here and there. They were all of various ages, sizes and colors, a perfect painting among the golden dawn light. Pale optics rested upon the camp for some time, lazily scanming across it though at the same time, harboring a cunning glint among them. A pink tongue swiped across his muzzle, collecting stray bits of prey as he glanced down - realizing that such was nearly gone. He paused for a moment at this, contemplating the situation, before something caught his attention.
+   Out of the corner of his eye, the tom spotted a figure approaching. A slender calico molly, posessing a morning meal of her own. The warrior's gaze rested upon her for a moment, silver optics gleaming with mild interest. As she settled herself a short distance away, sparing him a greeting a short moment afterwards, the tom's whiskers quivered.
+    <strong>"Good morning..."</strong> he replied slowly, ears held erect. <strong>"Palelily, correct? You look lovely today."</strong> he added after a moment, a small smile resting upon his face. <strong>"How're you today? Are you well?"</strong> he inquirer, tail flicking about behind him as he studied her from a distance. As far as he knew, the calico was a rather friendly feline and nothing to truly worry about conversing with - unless, she was the overly talkative type anyway.
+
+<span class="mention" title="raven_wolf#7286">@raven</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/231502872297078804/c84de6e5cf3c3288948a581986a61221.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="231502872297078804" style="color: rgb(46,204,113)" title="Iceywicey#3780">Ice</span>
+<span class="chatlog__timestamp">25-Feb-22 10:30 AM</span>
+<div class="chatlog__message" data-message-id="946806442227302511" id="message-946806442227302511" title="Message sent: 25-Feb-22 10:30 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{ ~ Iceheart ~ // A Forgotten Friend }</div>
+<em>Don’t you feel entitled to know what happened?</em> Iceheart mulled over this thought. It wasn’t as if she was reborn. That cat before her memory loss was the same one who was standing here right now. Acting as if those two are separate wasn’t going to solve problems. In fact, it would be avoiding them. Even if she hadn’t realized it herself, she needed her identity. She had been feeling so lost these past moons that the emptiness was getting to her. Additionally, if she wasn’t going to do it for her own sake, she should do it for the others. According to Laurelstar, there were a lot who cared about her. The least she could do was try in some way. 
+
+<strong>” Being a leader is busy, but do you think you can help me with some battle training?”</strong> The lynx-point suddenly asked. <strong>” No memory means I don’t remember any training I’ve had. I still want to be useful to the Clan, even if it’s like this.”</strong> Her tail flicked erratically, as if contemplating something. <strong>” And,”</strong> she began slowly. <strong>” Could you also tell me about your father? And what he meant to me?”</strong>
+<span class="mention" title="agatedemon#5698">@prim</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">25-Feb-22 11:37 AM</span>
+<div class="chatlog__message" data-message-id="946823276884262922" id="message-946823276884262922" title="Message sent: 25-Feb-22 11:37 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Laurelstar} | Iceheart | past II</div>
+Iceheart didn’t seem offended by her own presumption, which brought the leader a sense of relief. She smiled lightly, the request to train alongside her was one she’d accept readily. Laurelstar had sparred with the lynx-point she-cat before, and they had their own share of competitions in the past. She nodded to the pale-furred she-cat, gleefully obliging to her request. <strong>”Of course!”</strong> she chirped aloud, her tail tip swishing around quickly. Maybe this was an opportunity in disguise, a callback to a previous time where they trained. Maybe it could bring some sense of nostalgia for her, it could possibly help.
+
+The mention of her father made the excitement stall for a moment, but she was still smiling. He was gone, but she’d still speak of his legacy to all of those who were interested in hearing it. Especially from someone he was good friends with in life. <strong>”My father’s name was Featherpelt. He was known for taking in many kits and raising them as his own, because of that I actually have a lot of adoptive siblings.”</strong> she was one of the very few kits of his that were related to him by blood, she was one of the kits he had with Tigereyes. <strong>”He was being considered for deputy under Hawkstar’s reign along with you, and you two were quite friendly with one another, and worked well with each other. He was quite happy when you were appointed as deputy of ThunderClan.”</strong> she spoke highly of the tom, he was known for his kind disposition and calm personality. He looked after almost everyone in the clan, a cat who was trusted by all, and had a good reputation even outside of ThunderClan’s walls. It was rare to find such a cat nowadays, she didn’t know if it was even possible to find a cat like her father. He was unique, a true paragon of his kind. <strong>”He was happy serving ThunderClan, and was one of the most loyal cats I have ever seen. He was dedicated to the clan, and by extension, your leadership.”</strong>
+<span class="mention" title="Iceywicey#3780">@Ice</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/395274063611953154/f5406857dcf23847106738b88fa0d66d.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="395274063611953154" style="color: rgb(255,213,83)" title="wild#9017">wild™</span>
+<span class="chatlog__timestamp">25-Feb-22 11:58 AM</span>
+<div class="chatlog__message" data-message-id="946828522385735721" id="message-946828522385735721" title="Message sent: 25-Feb-22 11:58 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline language-diff">- ───────── CARDINALSPARK !! // WARRIOR OF THUNDERCLAN</div>
+
+Hearing the cream-furred feline's apology, Cardinalspark grinned a tad, shaking his head. <strong>"Oh no, you're more than alright. I can always spare a moment for you, Honeydrop."</strong> the tom purred, dark ears twitching. He observed the opposing feline for a moment, whiskers quivering as she continued, a light bit of laughter escaping the russet tom. <strong>"Ah, that's good to know then. I have an image to uphold, after all."</strong>
+    As he settled down once more, the russet warrior listened to the molly's words. Such would be appreciated - now that they were free from the ideals of war, all they needed to truly recover was for leaf-bare to release them of its harsh season. Day by day, it's chilling grip seemed to lessen, making way for warmer days and bountiful prey. The tom could hardly wait for such times to grace them - he'd missed hunting in those conditions, despite his longer pelt, he wasn't fond of the snow. <strong>"I must say, I'm looking forward to it, myself. That was one of the things keeping me from bringing back something extra for you - that and the fact I hadn't known you'd be looking for me today. I might've looked a tad silly hurrying through camp with an extra bit of prey, only for you not to show...though I suppose someone else would've enjoyed it all the same."</strong>
+    Noticing he'd been rambling onward about this meal, the tom's ears laid back slightly, a sheepish smile resting upon his face. <strong>"My apologies. I just...want to make sure you're alright and all. I don't want you catching colds or anything, while you're trying to help out."</strong> he replied, referring to the last time she'd gotten sick, a playful yet equally concerned light among his gaze.
+
+<span class="mention" title="BrokenBell#9477">@Dormamoon</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">27-Feb-22 10:59 AM</span>
+<div class="chatlog__message" data-message-id="947538500453007391" id="message-947538500453007391" title="Message sent: 27-Feb-22 10:59 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Laurelstar} | Ceremonies | present</div>
+As the sun rose high into the bright blue skies above them all, the camp was filled with energy and activity as its inhabitants were awake for the middle of the day. Today would mark a special occasion for some of her clan’s younger members, a promotion, and it was a special one. They would be adding two new warriors to their ranks, so this was to be a celebratory affair. With that in mind, the burly tortoiseshell sovereign of ThunderClan slipped out of her den upon the Highledge and stepped out onto the perch that overlooked her clan’s camp. She cleared her throat, before rallying her clan with a loud cry:
+
+<strong>”Let all cats old enough to catch their own prey gather beneath the Highledge!”</strong>
+
+Confidence and authority permeated her tone, her clanmates were to appear for this ceremony and support those who were being promoted. This was a part of their recovery, and these two cats had worked hard to earn their names and ranks. It was high time they were promoted at last. With that being said, she sat down at the edge of her throne, looking down at the growing crowd below, their expectant eyes trained on her now that she had their undivided attention.
+
+<span class="mention" style="">@ThunderClan</span> <span class="mention" title="tremb#3692">@tremb</span></span>
+</div>
+</div>
+</div>
+<div class="chatlog__message" data-message-id="947539447875006475" id="message-947539447875006475" title="Message sent: 27-Feb-22 11:03 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Coyotepaw} | Ceremonies</div>
+At the call of the ThunderClan leader, the lanky tom had stepped into the clearing along with the rest of his clanmates, looking up at Laurelstar who stood upon the Highledge. He glanced around the clearing, his stomach was doing flips already. Today was the day, wasn’t it? He didn’t even get to groom his fur a bit, he’d look a little unkempt for the ceremony. Coyotepaw gulped nervously, his paws shuffling beneath him as he awaited the next words to be uttered— looking around to see if anyone he knew was here.
+
+<em>What name am I going to be stuck with for the rest of my life?</em></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/718974084935057489/87cec92cc98578584ac1b7825b19a939.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="718974084935057489" style="color: rgb(255,138,34)" title="tremb#3692">tremb</span>
+<span class="chatlog__timestamp">27-Feb-22 11:10 AM</span>
+<div class="chatlog__message" data-message-id="947541125160402965" id="message-947541125160402965" title="Message sent: 27-Feb-22 11:10 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><strong>Wrenpaw</strong>
+<u>ThunderClan Apprentice</u>
+
+At Laurelstar’s summons, Wrenpaw was quick to slither from the apprentices den where had spent most of her morning fretting about her pelt and anxiously awaiting the ceremony. It wasn’t unusual for the cream furred molly to be a bundle of nerves, but today was unlike anything she had felt in quite some time. The day had finally come for her to receive her warrior name, and despite how much she’d tried to prepare, she still felt as though she wasn’t ready. 
+
+She hurried to Coyotepaw’s side, noticing quickly that he looked just as anxious as her. She gave him a wide grin, smiling past her worries and almost forgetting them for several moments. She remembered when they had become apprentices together, and discussed becoming warriors together as well. She never thought it would actually happen, but alas, here they were about to walk into the next step of their lives together. A small purr rumbled in her throat. It had been nice to always have a friend at her side. <span class="mention" title="agatedemon#5698">@prim</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/627673158605864960/228a6d50e5d80ea487437e336af42359.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="627673158605864960" style="color: rgb(46,204,113)" title="Cryptic#0546">Cryptic</span>
+<span class="chatlog__timestamp">27-Feb-22 11:11 AM</span>
+<div class="chatlog__message" data-message-id="947541517659172964" id="message-947541517659172964" title="Message sent: 27-Feb-22 11:11 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">Raccoonpaw</div>
+
+With great excitement and enthusiasm, Raccoonpaw darted for the Highledge the moment he heard the call of their leader. Ever since his own apprentice ceremony, he had developed a great enjoyment for the occasion and always wanted to be present to show support for his new clanmates. 
+
+The ring-tailed tom happily sat then turned his bright gaze up to Laurelstar, giving her his full attention as he waited for her to speak again.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/619280506885767189/574cf5007bc8291f9ce7b0ed888bdb80.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="619280506885767189" style="color: rgb(255,213,83)" title="springypaws777#8108">Springy 🦤</span>
+<span class="chatlog__timestamp">27-Feb-22 11:38 AM</span>
+<div class="chatlog__message" data-message-id="947548172065062952" id="message-947548172065062952" title="Message sent: 27-Feb-22 11:38 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content">Marigolddust - Ceremonies 
+</div></div>
+Apprehension tickled at Marigolddust’s chest as he looked up at Laurelstar’s from the crowd below her ledge.  He wasn’t sure he was ready to not be a mentor anymore, and he wasn’t sure if he was ready to stop addressing Wrenpaw with the name he was used to, but with the warrior name she would earn today.  What would it be like, not to mentor her anymore?  How different would it be?  He remembered how nervous he had been when he had first become the honey furred fem’s mentor, and now he wasn’t sure if he was ready <em>not</em> to be.  He didn’t doubt that Wrenpaw was ready- he had made sure to explain just how ready he knew she was skill wise.  But she could tell that she was nervous now, and, placed next to her for the moments before she would step forwards, he brushed his tail softly against hers and gave her a smile in the hopes to reassure her a little, before focusing again on Laurelstar.  He didn’t want to take all of the attention from her and Coyotepaw today.  They reminded him a bit of himself and Fernpaw, although the two had only been able to share their apprentice ceremony, as her becoming the medicine cat apprentice had gotten in the way of their warrior ceremony.  He was happy to see that Coyote and Wren could share this ceremony with each other, though.  He didn’t doubt that Coyote had and would serve as a good friend to be by Wrenpaw’s side.  She’d be alright without Marigolddust teaching her, he was sure, although he did have a feeling it would be a bit lonely, not visiting and being around her every day.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">27-Feb-22 11:38 AM</span>
+<div class="chatlog__message" data-message-id="947548363732189194" id="message-947548363732189194" title="Message sent: 27-Feb-22 11:38 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Laurelstar} | Ceremonies | present</div>
+Once the majority of her clanmates had settled themselves beneath the Highledge, Laurelstar parted her maw to continue on with the ceremony. No time like the present, she supposed, time to nip these apprentices’ nerves in the bud. Get the hard part over with. <strong>”Today, I have gathered you all here to bear witness to the promotion of two of our own apprentices, for they are ready to become full-fledged warriors.”</strong> her heterochromatic gaze bore down into the frames of Coyotepaw and Wrenpaw, the ones in question. She took a deep breath, she wasn’t afraid to address a crowd— she was actually quite happy for these two cats. A smile was evident on her scarred features, even from where she stood all the way up on top of the ledge, overlooking the abandoned quarry where they made their home. <strong>”Coyotepaw and Wrenpaw, please step forward.”</strong> she gestured for them to approach the center of the clearing, where the space was cleared out by those congregating in the midst of it, allowing them passage through. It was time.
+
+ <strong>”I, Laurelstar, leader of ThunderClan, call upon my warrior ancestors to look down on these two apprentices. They have trained hard to understand the ways of your noble code, and I commend them to you as  warriors in turn.”</strong>
+
+Those same words which have been uttered for generation after generation, familiar to the ears of any warrior, were finally being conferred to these two apprentices. She was granting them their warrior names, and this marked a monumental occasion in their lives. A moment to be proud of. <strong>”Coyotepaw and Wrenpaw, do you promise to uphold the Warrior Code and to protect and defend your clan, even at the cost of your own life?”</strong>
+
+Their answers would determine it all, and she waited for their acceptance as she kept her gaze trained on the both of them.
+
+<span class="mention" title="tremb#3692">@tremb</span></span>
+</div>
+</div>
+</div>
+<div class="chatlog__message" data-message-id="947548374645739600" id="message-947548374645739600" title="Message sent: 27-Feb-22 11:38 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Coyotepaw} | Ceremonies</div>
+He was right, <em>it was today.</em> He took a deep breath to steel himself before he stepped forward, feeling a wave of relief wash over him as he spotted Wrenpaw appear at his side, she was also being promoted today. That brought a sense of comfort to the young tom, and he flashed her a small smile out of reassurance. They could do this, this was just a ceremony, the same old song and dance for everyone in the clan. They could easily handle this, they fought cats from the Dark Forest, they fought traitors, they helped save their clan.
+
+<em>This is child’s play.</em>
+
+At the command to step forward, the long-limbed tom looked up at the russet-furred tortoiseshell above them, listening closely to her words. <em>Do you promise to uphold the Warrior Code?</em> 
+
+There was really only one answer, the only correct answer for a <em>warrior</em> of any clan to say.
+
+<strong>”I do.”</strong>
+
+He felt his anxieties wash away.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/718974084935057489/87cec92cc98578584ac1b7825b19a939.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="718974084935057489" style="color: rgb(255,138,34)" title="tremb#3692">tremb</span>
+<span class="chatlog__timestamp">27-Feb-22 11:54 AM</span>
+<div class="chatlog__message" data-message-id="947552283963555890" id="message-947552283963555890" title="Message sent: 27-Feb-22 11:54 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><strong>Wrenpaw</strong>
+<u>ThunderClan Apprentice</u>
+
+As Marigolddust’s tail brushed over her, her amber optics met his and for several moments she stared at him, sadness lingering in her gaze. After today he would no longer be her mentor. They wouldn’t spend their days in the territory together anymore, learning, laughing, or teasing one another. Would they still be close? No, no, of course they would. Wrenpaw knew better than to worry about that. She touched her nose briefly to his cheek. <strong>”Thank you for everything,”</strong> she whispered softly before turning back to face Laurelstar. 
+
+With Marigolddust there and Coyotepaw at her side, it wasn’t long before she felt all of her anxiety and fear ebbing away. This wasn’t a moment to fear. This was a moment to celebrate, a moment that every cat within every clan spent the early parts of their lives looking forward to. Wrenpaw’s eyes grew misty for a moment, though she worked hard to hide that from those around her. She felt as though she was feeling every single emotion at once right now, and it threatened to steal the air from her lungs. 
+
+<em>I do.</em> Coyotepaw’s words echoed in her ears. He sounded confident, so sure of himself. This made Wrenpaw feel stronger. This was <em>their</em> moment. 
+
+She stood up a little straighter and lifted her head a little higher, her voice ringing with conviction when she spoke. <strong>”I do.”</strong> <span class="mention" title="agatedemon#5698">@prim</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">27-Feb-22 12:06 PM</span>
+<div class="chatlog__message" data-message-id="947555212003012649" id="message-947555212003012649" title="Message sent: 27-Feb-22 12:06 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Laurelstar} | Ceremonies | present</div>
+Their words of acceptance rang true in her ears and she flashed them a gracious smile, nodding in acknowledgement of their answers. Clearing her throat once again, the ThunderClan leader announced at last: <strong>”Then by the powers of StarClan, I give you your warrior names. Coyotepaw, from this moment on you will be known as Coyotestep. Wrenpaw, from this moment on you will be known as Wrenfrost. StarClan honors your courtesy and intelligence, and your courage and determination respectively, and we welcome you as full warriors of ThunderClan.”</strong> she conferred the new names and titles for the two youngest warriors of their clan with pride, her eyes gleaming as she addressed them formally. They had made it, their hard work had paid off. She led the chants of their new warrior names with exuberance, celebrating their accomplishments and contributions to the clan that had made this moment possible. They deserved all the fanfare possible, this was one of the most important moments in any warrior’s life!
+
+<strong>”Coyotestep! Wrenfrost! Coyotestep! Wrenfrost! Coyotestep! Wrenfrost!”</strong>
+<span class="mention" title="tremb#3692">@tremb</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/619280506885767189/574cf5007bc8291f9ce7b0ed888bdb80.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="619280506885767189" style="color: rgb(255,213,83)" title="springypaws777#8108">Springy 🦤</span>
+<span class="chatlog__timestamp">27-Feb-22 12:58 PM</span>
+<div class="chatlog__message" data-message-id="947568359266996277" id="message-947568359266996277" title="Message sent: 27-Feb-22 12:58 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="quote"><div class="quote-border"></div><div class="quote-content">Marigolddust - Ceremonies
+</div></div>
+A small purr emitted from his throat at the soft nudge from his apprentice- <em>ex-</em> apprentice.  <em><strong><em>”Of course,”</em></strong></em> he replied, his voice soft as he spoke.  He would miss teaching Wrenpaw and taking her out into the territories, and, in a way, her becoming a warrior was the last step in him becoming the full fledged medicine cat.  Without having a warrior apprentice to worry about, he would be left only with his medicine cat duties, fully teking on the role rather than part-time like he had over the past few moons.  He wasn’t sure how prepared he felt for it, but he assumed that it would be a lot less work.  Unfortunately, it also meant that he would have more time to think, and to remember everything that he had had as a warrior.  An amazing apprentice, normal duties, and close friends.  He didn’t mind being medicine cat, of course, and was happy to take the role.  But he couldn’t help but wish that Fernpaw and Rooksnap were still around to see him here, or even still around in general, even if it meant he would have remained a warrior.  
+
+                  Then, it had become time for the two apprentices to become warriors.  Marigolddust listened intently, interested, excited, and perhaps only a bit sad.  He knew that he and Wrenpaw would still remain close, but he had never been a very big fan of change.  <em>Wrenfrost.</em>  The name tasted sweet on his tongue, even before he started to chant it and Coyotepaw’s new name, Coyotestep.  Both of the new titles felt perfect, albeit a bit different than he was used to.  The steady rhythm of the clan’s cheering for the two continued even when his thoughts wandered to both of the cats’ futures and what they might hold for them.  He know that his own wouldn’t include mentoring again for a long time, and he would never teach a cat to primarily do warrior duties again.</span>
+</div>
+</div>
+</div>
+<div class="chatlog__message" data-message-id="947568374643326997" id="message-947568374643326997" title="Message sent: 27-Feb-22 12:58 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace">-
+
+No, the next time he would be appointed an apprentice would be on Starclan’s word, and they’d work side by side with him to keep the clan healthy.  Truthfully, he couldn’t help but wish that he could stick to being Wrenpaw’s mentor instead.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/942565901746720849/c7865b69623ae7592e5b356b9dbdaa3f.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="942565901746720849" style="color: rgb(46,204,113)" title="raven_wolf#7286">raven</span>
+<span class="chatlog__timestamp">27-Feb-22 07:33 PM</span>
+<div class="chatlog__message" data-message-id="947667762082369547" id="message-947667762082369547" title="Message sent: 27-Feb-22 07:33 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><span class="pre pre--inline"> P a l e l i l l y | Thunderclan </span>
+
+A gentle multicolored gaze rested upon the tom, who licked bits of prey from his maw carefully. Palelilly took another bite of her own meal, plush audits flickering as the tom answered her greeting. The bashful femme turned her gaze away at the compliment, tail flickering. "Thank you- Flickerfox, is it?" She questioned, whiskers twitching as she returned to her breakfast. 
+
+A kind smile spread across her face. "I'm doing well today, however I'm quite bored. It's hard to find much to do with all this snow." She complained. Palelilly had always carried a disdain for leaf-bare and the cold seasons. She'd much rather be warm. A chilling breeze rustled her fur, causing her to shuffle her stance. 
+
+Palelilly finished her meal rather quickly, pushing the feathers into the snow as a temporary solution. Her bulbous tail flickered before curling over her paws, protecting her delicate toes from the wind chill. Her gaze refocused on the tom seated next to her, awaiting the next comfortable banter he'd provide. Palelilly loved keeping company with members of the clan simply because of the familiarity. Every conversation was similar, no matter who you spoke to. Not one cat was significantly different from another. 
+
+"How've you been lately, Flickerfox?" She finally questioned, audits swiveling. <span class="mention" title="wild#9017">@wild™</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/446509654378545183/6c8ca5f7214003da45b9f362e2749a0e.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="446509654378545183" style="color: rgb(255,213,83)" title="BrokenBell#9477">Dormamoon</span>
+<span class="chatlog__timestamp">28-Feb-22 11:28 AM</span>
+<div class="chatlog__message" data-message-id="947908195974803557" id="message-947908195974803557" title="Message sent: 28-Feb-22 11:28 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">Honeydrop // Cardinalspark</div>
+
+A shy smile adorned the feline’s face as she listened to his response, glad he wasn’t upset at her for disturbing his rest though she still felt bad about it. Her body relaxed as their conversation continued, enjoying the sound of his laughter as they joked back and forth with one another. <strong>”Oh I’m sure you do, though it might not be much to look at.”</strong> She teased, eyes sparkling with mischief. It wasn’t long ago when she would have been so nervous to playfully joke with a tom, but Cardinalspark made her feel so much at ease whenever they spent time together.
+
+<strong>”You were? Well it is the thought that counts, Cardinalspark. I do appreciate that.”</strong> Honeydrop purred in response to his comment, knowing how hard it could be to try and find prey at times during the cold season, but she was still touched by him thinking of her. She found it cute as he apologized for rambling on a little bit about the food, blushing a little while he continued to speak caring things towards her. Ah yes, catching a cold. She remembered the last time that happened to her. It hadn’t been life threatening or anything of the sorts, but still miserable, nonetheless. She had overdone it trying to help everywhere she could, while remaining soaked from the rain and chilled to the bone with her short fur. It was then when the russet tom would check in on her, bringing her fresh-kill or keeping her warm while she recovered. Despite being sick, it was one of her favorite memories. <strong>”I saw once the warm season comes, we should head to the stream like old times.”</strong> The creamy she-cat suggested with a grin, thinking back to the times they would stop by the stream after hunting and spend some time lounging about or even going for a quick swim. 
+<span class="mention" title="wild#9017">@wild™</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/231502872297078804/c84de6e5cf3c3288948a581986a61221.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="231502872297078804" style="color: rgb(46,204,113)" title="Iceywicey#3780">Ice</span>
+<span class="chatlog__timestamp">02-Mar-22 09:18 AM</span>
+<div class="chatlog__message" data-message-id="948600297826156604" id="message-948600297826156604" title="Message sent: 02-Mar-22 09:18 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{ ~ Iceheart ~ // A Forgotten Friend }</div>
+The admiration in which Laurelstar spoke about her father was clear. Iceheart’s ears pricked at every word, listening intently. It was confusing when the ginger-and-white femme talked about her relationship with Featherpelt. Iceheart must have done something incredible to be chosen as deputy over the tom. It seemed like they were still good friends over it too but unfortunately, she couldn’t remember. She knew she had been <em>there</em> during it but no memories came into mind. It frustrated her. 
+
+ <strong>” He sounds like a wonderful warrior,”</strong> the lynx-point spoke softly, fur brushing against the bare thorn tunnel of the camp entrance. <strong>” Do you know how many siblings you have?”</strong> Iceheart questioned, forcing her bubbling anger away. Clearly, not only was Featherpelt a dedicated warrior but a committed father as well. Raising kits was not easy. Not that Iceheart knew anymore but she had a vague idea on how taxing it must be to juggle two different, time and energy consuming roles.
+<span class="mention" title="agatedemon#5698">@prim</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">03-Mar-22 09:14 AM</span>
+<div class="chatlog__message" data-message-id="948961602235949167" id="message-948961602235949167" title="Message sent: 03-Mar-22 09:14 AM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Laurelstar} | Iceheart | past II</div>
+Her respect for her father was evident in every word she spoke, in truth he was almost universally liked by anyone he encountered. He could be a voice of reason, he had friends from all walks of life and was a cherished member of the clans. A truly peaceful, gentle cat who could calm down almost anyone he encountered. Practically a saint in her eyes, a cat she never could become, but could honor and try to uphold the legacy of. <strong>”There’s a lot, I don’t think I can count them all.”</strong> she let out an awkward chuckle at the question, her gaze lighting up for a moment. Her father practically took in any kit in need of a family, and gave them love and made them feel welcome in the clan’s walls. She wanted to do the same for her own kits, having taken on the same habit for a little while. Though since she had adopted that entire litter she found with Hollyfrost out in their abandoned Twoleg den out in the woods, she hadn’t taken in any since. She didn’t know if she could without her again, it was still so fresh in her mind, even if a couple moons had passed already. Not a day passed where she didn’t think of her.
+
+<em>And our kits are growing older and older, and she can’t witness them becoming warriors.</em>
+
+A sigh escaped her lips as her gaze grew wistful and cloudy for a moment, a pang of grief echoed within her heart for a moment. So many cats she loved were no longer with them, cats she and Iceheart both knew so well, and grief always seemed to know how to rear its ugly head back into these conversations. <strong>”He was one of the best, I know he’s looking out for us from wherever he is now.”</strong>
+<span class="mention" title="Iceywicey#3780">@Ice</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">03-Mar-22 07:10 PM</span>
+<div class="chatlog__message" data-message-id="949111439333920819" id="message-949111439333920819" title="Message sent: 03-Mar-22 07:10 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Laurelstar} | Ceremony | present</div>
+The sun was ever present in the sky as it overlooked the camp below. Shining its rays down upon the sand-colored rocks, the camp was basked in golden light. It was later on in the day, but the camp was ever busy, with familiar faces hustling and bustling down in the clearing. The ThunderClan leader had lost track of time when she realized she was to conduct a ceremony today, for one cat in particular. Figuring now was a better time than never, the tortoiseshell stepped out upon the Highledge, gazing down as her clanmates as she rallied them together with a call.
+
+<strong>”Let all cats old enough to catch their own prey gather beneath the Highledge for a clan meeting!”</strong>
+
+The call was made, and she awaited her clanmates to gather in the clearing down below. She watched with interest, waiting for the cats she’d be calling upon for this ceremony.
+
+<span class="mention" style="">@ThunderClan</span> <span class="mention" title="~~~~~~~~#2568">@Emberlion, Tigerstripe &amp;Cow</span> <span class="mention" title="Fawnleap//Toffmel#5591">@Fawn</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250106765788708874/f15d875e164024adcae72cb19493d5dc.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250106765788708874" style="color: rgb(255,138,34)" title="~Swift~#2500">~Swift~</span>
+<span class="chatlog__timestamp">03-Mar-22 07:46 PM</span>
+<div class="chatlog__message" data-message-id="949120504042754058" id="message-949120504042754058" title="Message sent: 03-Mar-22 07:46 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace">AlerceClaw
+
+       Though so high in the sky, it felt like it scanned his entire body; the heat of the sun mercilessly lit his physique in a fairly comfortable state of warmth, though there was definitely a limit to such things. It was odd how such warmth was only achieved in leafbare however it was nothing to worry his mind too much about.
+    Pacing to the clearing, he abide by Laurels announcement and gathered. The virile eventually found a spot, rooting his odd coloured manus to the ground and sat, to further listen in on what information this meeting had in store to share.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/883866195021926510/2e4c3b25e804c9546599659e4cd24ad3.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="883866195021926510" style="color: rgb(46,204,113)" title="~~~~~~~~#2568">Emberlion, Tigerstripe &amp;Cow</span>
+<span class="chatlog__timestamp">03-Mar-22 07:46 PM</span>
+<div class="chatlog__message" data-message-id="949120733034983435" id="message-949120733034983435" title="Message sent: 03-Mar-22 07:46 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace">Tigerstripe                                                                                                      
+             The leader's yowl rang across the camp. Tigerstripe emerged from the mossy den. His fur shone as he moved towards Highledge. The tabby smiled at the much younger Sandkit. He knew why the clan meeting was being called, to apprentice the kit. His heart pounded knowing that he could be chosen to mentor Sandkit. " She could be my first apprentice!" The unlikely possibility danced across his mind. He tried to conceal the obvious expression, knowing if he wasn't chosen, he would be devastated.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/817917568034799626/9ea6fe67241e82df24f1c278e6ae19ab.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="817917568034799626" style="color: rgb(46,204,113)" title="Fawnleap//Toffmel#5591">Fawn</span>
+<span class="chatlog__timestamp">03-Mar-22 07:49 PM</span>
+<div class="chatlog__message" data-message-id="949121379993804851" id="message-949121379993804851" title="Message sent: 03-Mar-22 07:49 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">Sandkit</div>
+Sandkit heard her leader’s call and hopped over to the center of the camp, her green eyes ⏃ gleam. Her paws were restless beneath her as she waited, and she wanted to squeal with excitement. <em>’ oh please let this be it, please let this be it ‘</em> she pleaded silently, eyes darting from one side of the camp to the next while cats began to gather in the clearing.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/817917568034799626/9ea6fe67241e82df24f1c278e6ae19ab.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="817917568034799626" style="color: rgb(46,204,113)" title="Fawnleap//Toffmel#5591">Fawn</span>
+<span class="chatlog__timestamp">03-Mar-22 08:01 PM</span>
+<div class="chatlog__message" data-message-id="949124292614971482" id="message-949124292614971482" title="Message sent: 03-Mar-22 08:01 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><span class="mention" title="agatedemon#5698">@prim</span></span>
+</div>
+</div>
+</div>
+<div class="chatlog__message" data-message-id="949124333064826890" id="message-949124333064826890" title="Message sent: 03-Mar-22 08:01 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace">(Sorry, forgot to ping-@-whatever)</span>
+<span class="chatlog__edited-timestamp" title="03-Mar-22 08:01 PM">(edited)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">03-Mar-22 08:18 PM</span>
+<div class="chatlog__message" data-message-id="949128707216396318" id="message-949128707216396318" title="Message sent: 03-Mar-22 08:18 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Laurelstar} | Ceremony | present</div>
+As the growing crowd of cats appeared down below, gazing up at her upon her perch, the tortoiseshell leader had dipped her head to greet them all. Her heterochromatic gaze swept across the clearing for Sandkit, the one she was to promote today. This was a milestone for any clan cat, the day they reached six moons of age meant they were to be promoted to that of an apprentice. This was momentous indeed. So many cats were being promoted this moon, it was a good sign indeed. <strong>”Today I have gathered you all here to bear witness to the promotion of one of our own.”</strong> her gaze stopped at the sight of the young she-kit who was watching her with those bright green eyes of hers. <strong>”Sandkit, please step forward.”</strong>
+
+She gestured for the kit to enter the clearing ahead of the Highledge with a swish of her tail. She was smiling gently, hoping to ease the kit’s nerves as the clan watched her from the sidelines. <strong>”Sandkit, you have reached the age of six moons, and it is time for you to be apprenticed. From this day on, until you receive your warrior name, you will be known as Sandpaw. Your mentor will be Tigerstripe. I hope Tigerstripe will pass down all he knows on to you.”</strong> her gaze then turned to the tom she had appointed as Sandpaw’s new mentor, her gaze stern as she expected him to keep her safe and train her well. <strong>”Tigerstripe, you are ready to take on an apprentice. You have received excellent training from Flickereye, and you have shown yourself to be trustworthy and a swift hunter. You will be the mentor of Sandpaw, and I expect you to pass on all you know to Sandpaw.”</strong> she then took a step back, allowing the pair to greet one another and accept each other as mentor and apprentice. As well as to allow the clan to celebrate their brand new apprentice amongst their ranks. Chanting of Sandpaw’s new name could be heard, including from the leader herself. 
+
+<strong>”Sandpaw! Sandpaw! Sandpaw!”</strong>
+
+With that being said, her work here was finished.
+
+<strong>”This meeting is dismissed.”</strong>
+<span class="mention" title="Fawnleap//Toffmel#5591">@Fawn</span> <span class="mention" title="~~~~~~~~#2568">@Emberlion, Tigerstripe &amp;Cow</span></span>
+<span class="chatlog__edited-timestamp" title="03-Mar-22 08:21 PM">(edited)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/817917568034799626/9ea6fe67241e82df24f1c278e6ae19ab.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="817917568034799626" style="color: rgb(46,204,113)" title="Fawnleap//Toffmel#5591">Fawn</span>
+<span class="chatlog__timestamp">03-Mar-22 08:34 PM</span>
+<div class="chatlog__message" data-message-id="949132822327721994" id="message-949132822327721994" title="Message sent: 03-Mar-22 08:34 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">Sandpaw</div>
+
+As soon ⏃ Laurelstar said her name she knew it was her moment. She stood up and stepped forward, trying to settle herself so she wasn’t so fidgety. As her leader was speaking she felt ⏃ wide smile slowly spreading across her face. She looked over at Tigerstripe, and the smile fully took hold, she bounced over to the Tom, looking up at him with the most joyous look in all of the clans. Her clan mates were cheering her name, and she couldn’t help but burst with pride that she was finally an apprentice, <em>’ Sandpaw…Sandpaw! ⟟ can’t believe it! ‘</em>. <strong>”you’re gonna be my mentor?!”</strong> she said excitedly with her still squeak-ish-kit-ish voice.
+<span class="mention" title="~~~~~~~~#2568">@Emberlion, Tigerstripe &amp;Cow</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/883866195021926510/2e4c3b25e804c9546599659e4cd24ad3.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="883866195021926510" style="color: rgb(46,204,113)" title="~~~~~~~~#2568">Emberlion, Tigerstripe &amp;Cow</span>
+<span class="chatlog__timestamp">03-Mar-22 08:44 PM</span>
+<div class="chatlog__message" data-message-id="949135100346499102" id="message-949135100346499102" title="Message sent: 03-Mar-22 08:44 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace">Tigerstripe's heart swelled up with pride. The creme kit's green eye's burnt into his. He happily touched noses with the new apprentice. "I glad to be able to mentor you!" he whispered to the little cat's ear. "I'm sure you'll be a <em>excellent</em> Warrior when you complete your training!" the little cat smiled at him. The clan never ceased the cheering "SANDPAW!SANDPAW!" The loudest yowl was her mother, Blurryyowl. A little excited mew rang in his ear. ”<strong>**</strong>you’re gonna be my mentor**?!"                                                                          He couldn't contain his excitement and happily responded:" Umm... Yea!?" he stammered.                                           But throughout the whole ceremony, only one thought rang in his ear.  " I vow to be ten times better than my father. And to be an amazing clanmate and mentor to Sandpaw."                                                                                                                                                                                                                                                                                                                                                                     <span class="mention" title="Fawnleap//Toffmel#5591">@Fawn</span> <span class="mention" title="agatedemon#5698">@prim</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div style="text-align:center; margin: 2em;">
+<a href="page1.html">« First</a> <a href="page26.html">‹ Prev</a> <a href="page24.html">« -3</a> <strong>Page 27 of 29</strong> <a href="page28.html">Next ›</a> <a href="page29.html">Last »</a> 
+</div>
+</body>
+</html>
