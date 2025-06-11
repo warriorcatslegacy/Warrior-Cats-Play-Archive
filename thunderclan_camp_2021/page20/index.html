@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Warriors Cats Play - thunderclan-camp</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width" name="viewport"/>
+<style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote-border {
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__sticker {
+            width: 180px;
+            height: 180px;
+        }
+
+        .chatlog__sticker--media {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(e => hljs.highlightBlock(e));
+        });
+    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.8.1/lottie.min.js"></script>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__sticker--media[data-source]').forEach(e => {
+                const imageDataUrl = e.getAttribute('data-source');
+
+                const anim = lottie.loadAnimation({
+                  container: e,
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  path: imageDataUrl
+                });
+
+                anim.addEventListener('data_failed', () =>
+                    e.innerHTML = '<strong>[Sticker cannot be rendered]</strong>'
+                );
+            });
+        });
+    </script>
+<script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+<svg style="display: none">
+<symbol id="icon-attachment" viewbox="0 0 720 960">
+<path d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" fill="#f4f5fb"></path>
+<path d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" fill="#7789c4"></path>
+<path d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" fill="#f4f5fb"></path>
+<path d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" fill="#7789c4"></path>
+</symbol>
+</svg>
+</head>
+<body>
+<div class="chatlog">
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/231502872297078804/c84de6e5cf3c3288948a581986a61221.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="231502872297078804" style="color: rgb(46,204,113)" title="Iceywicey#3780">Ice</span>
+<span class="chatlog__timestamp">19-Nov-21 04:00 PM</span>
+<div class="chatlog__message" data-message-id="911375413673091112" id="message-911375413673091112" title="Message sent: 19-Nov-21 04:00 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{ ~ Icestar ~ }</div>
+<strong>” I grow tired of seeing your face behind every evil scheme,”</strong> Icestar chipped in unhelpfully. Having recovered her composure after this wonderful surprise, the lynx-point was back to the confident set of her chin and glaring eyes. She shifted to protectively block Needlestripe from Silentwing’s disappointing gaze. While he had every right to earn it, he was still her Clanmate and she was better than him.
+
+It must have been an amazing view of the sun’s glorious orange rays bursting out from the horizon but Icestar kept her eyes locked on the menace. <strong>” It must be Silentwing. Take it in because that is the last thing you’ll ever see.”</strong> The ThunderClan leader had no qualms against murdering ghosts. They weren’t alive anymore and her claws were itching to slice at that nasty throat of the dappled molly.
+<span class="mention" title="agatedemon#5698">@prim</span> <span class="mention" title="Shade#2140">@Shade</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">19-Nov-21 04:00 PM</span>
+<div class="chatlog__message" data-message-id="911375461307805758" id="message-911375461307805758" title="Message sent: 19-Nov-21 04:00 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Viperpaw}</div>
+The young black tortoiseshell had been caught in the fray, desperately attacking any foe she came across as she had attempted to make her way towards the Highledge. She wasn’t very skilled in fighting yet, and she didn’t want to get killed by doing something completely stupid by picking a fight with a bigger opponent. Yet she was finding herself cornered left and right, trying to weave through the frenzy, but it was hard for a cat as small as she was. She was growing increasingly desperate, struggling to free herself, and it was terrifying.
+
+And now she had only drawn the attention of a Dark Forest warrior, while one of her mothers was fighting nearby. <strong>”Mother! Mother help!”</strong> she cried out for Hollyfrost, before her gaze met Deerbounce’s, never feeling more fear in her life in this moment.
+
+<span class="mention" title="✧*̥˚ snips *̥˚✧#1759">@fuzz</span> <span class="mention" title="JennyFromTheRift#0113">@Jennstar</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/718974084935057489/87cec92cc98578584ac1b7825b19a939.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="718974084935057489" style="color: rgb(255,138,34)" title="tremb#3692">tremb</span>
+<span class="chatlog__timestamp">19-Nov-21 04:03 PM</span>
+<div class="chatlog__message" data-message-id="911376132211888208" id="message-911376132211888208" title="Message sent: 19-Nov-21 04:03 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><span class="pre pre--inline">{     Wrenpaw     }</span>
+
+Running as fast as her legs could carry her, Wrenpaw burst through the entrance of the ThunderClan camp, fur bristling and lips curled in a snarl. A gory scene unfolded before her orange gaze. Everywhere she looked her clanmates were immersed in battle — a sea of writhing bodies and a symphony of furious caterwauls. The caramel fem hesitated briefly, unsure of where to insert herself. The clearing had transcended into utter chaos, and the apprentice’s mind was racing. 
+
+Another apprentice was going head to head with a dark forest cat, holding their own but perhaps in need of some assistance. Wrenpaw was eager to get her paws dirty, and show everyone that she was stronger than they thought. She threw herself at the unsuspecting feline, trampling them to the ground and unleashing a round of heavy blows before leaping out of harms way, looking for her next opponent as the previous one fled from battle. (<strong>OPEN</strong>)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/796257731342106714/7f7702af99977ac9ff39287717e73c6c.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="796257731342106714" style="color: rgb(255,213,83)" title="StarkTheWolf#5009">Stark✨</span>
+<span class="chatlog__timestamp">19-Nov-21 04:04 PM</span>
+<div class="chatlog__message" data-message-id="911376403520434256" id="message-911376403520434256" title="Message sent: 19-Nov-21 04:04 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">Wolfshine</div>
+Rushing into battle, the she-cat frantically looked for Needlestripe. Where could he be? Her fur stood on end as she spotted Silentwing among the bustle of cats. If she found out she failed.. she would be done for.
+<strong>” Don’t worry my babies,”</strong> she whispered to her belly, <strong>” I will keep you all safe.”</strong>
+She would have to look for Needlestripe later. For right now she had to hide- for the sake of her kits.
+She looked around for a crevice to hide in. Finding a bush, she crawled behind it and watched as the battle continued.
+|open|</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/231502872297078804/c84de6e5cf3c3288948a581986a61221.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="231502872297078804" style="color: rgb(46,204,113)" title="Iceywicey#3780">Ice</span>
+<span class="chatlog__timestamp">19-Nov-21 04:05 PM</span>
+<div class="chatlog__message" data-message-id="911376776171761695" id="message-911376776171761695" title="Message sent: 19-Nov-21 04:05 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{ ~ Fishflake ~ }</div>
+It would be too good to be true if no Dark Forest warrior neared the leader’s den that temporarily housed the vulnerable. Leading a group of his fellow comrades with him, Fishflake slunk up the Highledge trail. While Silentwing and Needlestripe distracted the two highranks of this wretched Clan, his team was going to strike where it would hurt the most. The prospect of digging his claws into kit flesh was enough to send a pleasant chill through his body.
+<span class="mention" title='Jay said "MATERIAL GWORL"#0677'>@Jay said "MATERIAL GWORL"</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/251196337197023242/180cfd511eaaa49edb5782c745502004.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="251196337197023242" style="color: rgb(46,204,113)" title="✧*̥˚ snips *̥˚✧#1759">fuzz</span>
+<span class="chatlog__timestamp">19-Nov-21 04:09 PM</span>
+<div class="chatlog__message" data-message-id="911377798487228426" id="message-911377798487228426" title="Message sent: 19-Nov-21 04:09 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline language-css">hollyfrost || thunderclan lieutenant</div>
+<div class="quote"><div class="quote-border"></div><div class="quote-content">The volume of camp doesn't matter when it is the familiar cry of her own child that tears through the clamour of battle. Hollyfrost's ears stiffen and her pelt stands on end; every instinct sets her nerves to live wires, tensing muscles and shifting eyes. 
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content">Viperpaw: the only one left unaccounted for. Yet it is her screams that send the senior warrioress into a frenzy, swatting away Clanmate and enemy alike until the black smudge of dappled shadow catches her eyes. Hollyfrost, quick to survey the scene, watches in horror as an unfamiliar dark pelt tears through the throbbing mass of bodies, claws, and teeth towards her progeny.
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content">She leaps into action.
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content">Claws meet shoulder as Holly blocks Deerbounce's path with her own lanky form, slamming a warning strike across the shadow warrior's muzzle. 
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content"><em>"Not</em> my kit, you foxheart," she snarls, teeth glinting with malice as she sizes up to the intruder.
+</div></div><span class="mention" title="agatedemon#5698">@prim</span> <span class="mention" title="JennyFromTheRift#0113">@Jennstar</span></span>
+<span class="chatlog__edited-timestamp" title="19-Nov-21 04:11 PM">(edited)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/358382974737055755/473db204d05eee7e5832e0148078d3eb.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="358382974737055755" style="color: rgb(46,204,113)" title="Wolf#3327">Wolf</span>
+<span class="chatlog__timestamp">19-Nov-21 04:13 PM</span>
+<div class="chatlog__message" data-message-id="911378569165430814" id="message-911378569165430814" title="Message sent: 19-Nov-21 04:13 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace">Bearmask was faster than any animal in the forest, breezing through enemies so quickly that it seemed unreal. Since these cats were already dead, he made sure that each strike was made with the intent to kill, and in a matter of only a few minutes, he had already dispatched five undead warriors (because he’s so cool and awesome and epic and awesome). <strong>“You guys sounded more dangerous in stories,”</strong> he said with a battle-hungry grin as he finished another cat he had pinned off, tearing out their throat.
+
+The training he’d done with Eaglewing was paying off. He was stronger than ever. Now was hardly the time to praise himself for it though. He needed to look for the final boss, Silentwing. If he took out the Dark Forest cats’ leader, they would be weaker than ever. Bearmask scanned the area, trying to make out the feline he’d seen once during the WindClan raid moons ago.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">19-Nov-21 04:13 PM</span>
+<div class="chatlog__message" data-message-id="911378635359916032" id="message-911378635359916032" title="Message sent: 19-Nov-21 04:13 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Coyotepaw}</div>
+He had been chasing after Wolfshine after she’d escaped from the makeshift den, despite the wound in his shoulder. She had captured his friend, held her prisoner, and he wasn’t going to let her forget it! <strong>”I won’t let you escape, Wolfshine! You’ll pay for what you’ve done!”</strong> he hissed as he charged into the clearing, a gasp escaping his jaws as he saw the bloodshed and chaos. <em>StarClan… What is going on here?!</em> he was panting from his sprint, ears flattened against his skull as he tried to locate Wolfshine in the camp, but to no avail, so far.
+
+<strong>”Show yourself! You coward! You can’t hide from ThunderClan!”</strong>
+<span class="mention" title="StarkTheWolf#5009">@Stark✨</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/184134495488704513/5c4756b9297842bd778f451f8dfffbbd.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="184134495488704513" style="color: rgb(119,102,221)" title="JennyFromTheRift#0113">Jennstar</span>
+<span class="chatlog__timestamp">19-Nov-21 04:15 PM</span>
+<div class="chatlog__message" data-message-id="911379074960752730" id="message-911379074960752730" title="Message sent: 19-Nov-21 04:15 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">Deerbounce</div>
+<span class="mention" title="agatedemon#5698">@prim</span> <span class="mention" title="✧*̥˚ snips *̥˚✧#1759">@fuzz</span>  
+
+The wraith like shecat hissed in annoyance as she was stopped by the black furred warrior before she could lay claws on the apprentice.  She growled, her ice blue eyes lit with a crazed fury. 
+
+<strong>"How pathetic. Does Thunderclan not bother to train their young? Always have to have someone come to your defense."</strong> she rolled her eyes, before a crazed cackle erupted. <strong>"Well, this will fun nonetheless."</strong> she grinned, before disappearing in the shadows.
+A moment later, she appeared again,  this time at Hollyfrosts side. She sank her claws into the strong warriors shoulders, using her back claws to rake her rear.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/780207651916480522/f479f0fd9e5bdc3f819fcdc0ade64ec2.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="780207651916480522" style="color: rgb(46,204,113)" title="ManoKit! (Electro kit)#8575">Jollykit! :)</span>
+<span class="chatlog__timestamp">19-Nov-21 04:16 PM</span>
+<div class="chatlog__message" data-message-id="911379430826442813" id="message-911379430826442813" title="Message sent: 19-Nov-21 04:16 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace">Lionstep could hear the sounds of battle from inside the leaders den. He sat near the enterance, ready to attack at any enemy that dares come near. The walls of the den coated with the leader's scent comforts him. <em>I have to be ready!</em> he sits in a ready to pounce position, and narrows his eyes.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/796257731342106714/7f7702af99977ac9ff39287717e73c6c.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="796257731342106714" style="color: rgb(255,213,83)" title="StarkTheWolf#5009">Stark✨</span>
+<span class="chatlog__timestamp">19-Nov-21 04:17 PM</span>
+<div class="chatlog__message" data-message-id="911379780564308019" id="message-911379780564308019" title="Message sent: 19-Nov-21 04:17 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">Wolfshine| Coyotepaw</div>
+Trying to stay hidden, Wolfshine stiffened as she heard the sounds of Coyotepaw after her. Why couldn’t he just leave her alone?
+If anyone found her here, she would be crowfood. She had to confront him.
+Stepping out from behind the bush, she looked at the apprentice with darkened eyes.
+<strong>” So you’ve found me Coyotepaw. Congratulations, you have the makings of a true Thunderclan warrior.”</strong> she glanced down at her stomach, <strong>” I have a secret to tell you- and you can’t tell anyone. I’m having kits. If you attack me, or call someone to kill me now,They’ll die along with me. Do us both a favor, leave me. Leave me here and Starclan won’t have to punish you for taking the innocent lives inside me.”</strong> she tried to hide her fur bristling. Would it be enough to stop him? 
+<span class="mention" title="agatedemon#5698">@prim</span></span>
+<span class="chatlog__edited-timestamp" title="19-Nov-21 04:18 PM">(edited)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/268858785756348417/0f605c3435d3902e449116a5e0d827da.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="268858785756348417" style="color: rgb(255,213,83)" title='Jay said "MATERIAL GWORL"#0677'>Jay said "MATERIAL GWORL"</span>
+<span class="chatlog__timestamp">19-Nov-21 04:18 PM</span>
+<div class="chatlog__message" data-message-id="911379846171602954" id="message-911379846171602954" title="Message sent: 19-Nov-21 04:18 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace">Dustyclouds back arched and his hackles raised impossibly more as a small group of the attackers approached. His ears flattened and his canines became exposed, <strong>"H-Hey! Don't come any closer!"</strong> He tried to sound demanding and strong, like in the same way Laurelblaze might order someone to do something, but it didn't quite have the same bite to it. <span class="mention" title="Iceywicey#3780">@Ice</span> (sorry it's short I had another post but my wifi crapped so here's this<img alt="😭" class="emoji" loading="lazy" src="https://twemoji.maxcdn.com/2/svg/1f62d.svg" title="sob"/> )</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">19-Nov-21 04:21 PM</span>
+<div class="chatlog__message" data-message-id="911380726988013578" id="message-911380726988013578" title="Message sent: 19-Nov-21 04:21 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Viperpaw}</div>
+The young tortoiseshell was panting, her mottled fur bristling as she saw her mother come to her aid, viciously attacking the strange cat who’d targeted her. She gulped as she took a step back, but she didn’t want to leave her mother to fight this cat alone, not when she called for help… She had to fight too! <strong>”Get off of her you… You piece of rat-dung!”</strong> she cursed aloud, insulting the Dark Forest she-cat as she sprang at her, clamping her jaws down onto one of her hindlegs, alarmed to not be tasting blood in her mouth.
+
+<em>W-What? Why isn’t she bleeding? Why does she reek of death?</em>
+
+Viperpaw’s eyes widened in shock as she held on, not knowing what to make of Deerbounce, and why her attacks seemed to just be phasing through her, or were they?
+
+<span class="mention" title="JennyFromTheRift#0113">@Jennstar</span> <span class="mention" title="✧*̥˚ snips *̥˚✧#1759">@fuzz</span></span>
+<span class="chatlog__edited-timestamp" title="19-Nov-21 04:23 PM">(edited)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">19-Nov-21 04:29 PM</span>
+<div class="chatlog__message" data-message-id="911382810894422118" id="message-911382810894422118" title="Message sent: 19-Nov-21 04:29 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Coyotepaw}</div>
+He had managed to locate Wolfshine behind a bush in camp, and here she was, pleading for her life. His ears flattened against his skull as Wolfshine gave her reasoning, and he stared down at her, gulping out of hesitation. He couldn’t leave her to escape, she needed to be captured, to answer for her crimes! <strong>”I-I…”</strong> he felt guilt well up in his chest, his leaf-green gaze widening. <strong>”I won’t kill you… But I can’t let you leave. I won’t allow it, you need to stay and pay for your crimes. I won’t be responsible for killing unborn kits.”</strong> he winced at the thought, before staring back out at the scene playing out in camp… He’d have to stay here for now, to keep an eye on the pregnant queen. <span class="mention" title="StarkTheWolf#5009">@Stark✨</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__reference-symbol"></div>
+<div class="chatlog__reference">
+<img alt="Avatar" class="chatlog__reference-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/231502872297078804/c84de6e5cf3c3288948a581986a61221.png?size=128"/>
+<span class="chatlog__reference-name" style="color: rgb(46,204,113)" title="Iceywicey#3780">Ice</span>
+<div class="chatlog__reference-content">
+<span class="chatlog__reference-link" onclick="scrollToMessage(event, '911370476947927050')">
+<div class="pre pre--multiline nohighlight">{ ~ Fishflake ~ }</div>
+It would be too good to be true if Honeydrop and the other warriors succeeded in taking the vulnerable to safety. Besides, they couldn’t go up there with Laurelblaze and Icestar prancing around bait. A few Dark Forest warriors separated from the convoluted mess of the battle and slipped up the Highledge trail.
+
+<strong>” Leaving the party so soon?”</strong> The smooth voice of Fishflakes arose behind the team of ThunderClan cats. **” 
+<span class="mention" title="BrokenBell#9477">@Dormamoon</span> </span>
+</div>
+</div>
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/446509654378545183/6c8ca5f7214003da45b9f362e2749a0e.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="446509654378545183" style="color: rgb(255,213,83)" title="BrokenBell#9477">Dormamoon</span>
+<span class="chatlog__timestamp">19-Nov-21 04:30 PM</span>
+<div class="chatlog__message" data-message-id="911383051387424778" id="message-911383051387424778" title="Message sent: 19-Nov-21 04:30 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">Honeydrop // Fishflake</div>
+
+Honeydrop stiffened at the sound of the feline's voice, making her tense as she quickly placed herself in between the attackers and the vulnerable clanmates. <strong>"You will pay dearly for attacking us."</strong> She hissed, trying to stand strong and firm even though she was afraid. She was the type of cat to try and solve arguments by calmly talking but this was way past making casual chitchat to end the battle. Only fighting would result in it being finished. 
+<span class="mention" title="Iceywicey#3780">@Ice</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/619280506885767189/574cf5007bc8291f9ce7b0ed888bdb80.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="619280506885767189" style="color: rgb(255,213,83)" title="springypaws777#8108">Springy 🦤</span>
+<span class="chatlog__timestamp">19-Nov-21 04:34 PM</span>
+<div class="chatlog__message" data-message-id="911383845348200499" id="message-911383845348200499" title="Message sent: 19-Nov-21 04:34 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">Silentwing • The Battle</div>
+
+The voice of the point dragged Silentwing's eyes off of her hopeless choice of an ally and onto the leader.  A hint of amusement sparked in her eyes, although behind it, annoyance over their lack in efficient success still stormed, although she knew that this was all just a delay in her plans.  Cats were fighting for their lives, but those of which who were fighting for her own goals would finish successful.  Even if some cats, such as Needlestripe, were weak links.  <em><strong><em>"But, why?  Seeing appearance of my beauty must not be much of an annoyance at all- although, I can't say the same for yours."</em></strong></em> she purred, a murderous spark lighting behind her optics as she spoke.  There was nothing else she wanted more than to finish off these <em>bastards.</em> The nerves these cats had would be ended soon, along with their legacy.  
+
+               <em><strong><em>"Well, don't you have confidence?"</em></strong></em> She commented, adjusting her deathly form as she examined the two cats in front of her.  With a flick of her tail, and a quick glance over the leader and deputy, Silentwing spoke the last words she planned for them to hear; at least, before they were bleeding from the throats on their own home grounds.  <em><strong><em>"It's too bad you didn't take your own advice."</em></strong></em> She said, and at long last, she let herself fly- specifically, onto Icestar.
+
+<span class="mention" title="agatedemon#5698">@prim</span> <span class="mention" title="Iceywicey#3780">@Ice</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/395274063611953154/f5406857dcf23847106738b88fa0d66d.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="395274063611953154" style="color: rgb(255,213,83)" title="wild#9017">wild™</span>
+<span class="chatlog__timestamp">19-Nov-21 04:36 PM</span>
+<div class="chatlog__message" data-message-id="911384497038184469" id="message-911384497038184469" title="Message sent: 19-Nov-21 04:36 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline language-fix">───────── 𝐇𝐎𝐋𝐋𝐎𝐖𝐆𝐑𝐎𝐕𝐄 !! // WARRIOR OF THUNDERCLAN</div>
+
+By the time Hollowgrove charged into camp, bloodied and wounded, a horrid sight met her eyes. A large battle had taken place in her absence. Her gaze flickered over both Thunderclanners and traitors. Even a few Dark Forest cats were here. <em>Perfect.</em> Though her tone had been a sarcastic one, perhaps this would be exactly what they needed. Blood pooled in various places, the stench of it wafting into her nose. She began to bear her fangs, searching for her next target as she was now bloodthirsty. <em>I've taken out one..why not anoth-</em>
+    A sudden force rammed into her, causing her to hit the ground rather awkwardly. Quickly regaining herself, the tabby rolled and arose again, thrashing about violently. <strong>"Why you little demon!"</strong> she shrieked, attempting to connect a blow. Her claws lashed out at Wrenpaw, already slick with blood. She wasn't about to allow herself to get beaten by one of their own former prisoners. If anything, she'd take this one out just as swiftly as Tigerspring.
+
+<span class="mention" title="tremb#3692">@tremb</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/251196337197023242/180cfd511eaaa49edb5782c745502004.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="251196337197023242" style="color: rgb(46,204,113)" title="✧*̥˚ snips *̥˚✧#1759">fuzz</span>
+<span class="chatlog__timestamp">19-Nov-21 04:43 PM</span>
+<div class="chatlog__message" data-message-id="911386327981895701" id="message-911386327981895701" title="Message sent: 19-Nov-21 04:43 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline language-css">hollyfrost || thunderclan lieutenant</div>
+<div class="quote"><div class="quote-border"></div><div class="quote-content">She bristles at the insult and snaps her teeth at the dark queen. "Says the coward attacking a child," she retorts.
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content">Deerbounce disappears and Holly whips around, exposing her back for the dark forest barbarian to sink her attack. The black molly yowls, writhing beneath the venomous claws as they rake clumps of fur from her spine. It momentarily gets heavier as Viperpaw desperately tries to free her mother.
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content">Holly rears and lets her full weight fall back into the gorge wall, rights herself, and slams back again. Anything to get the former WindClan traitor off her.
+</div></div><span class="mention" title="agatedemon#5698">@prim</span> <span class="mention" title="JennyFromTheRift#0113">@Jennstar</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/718974084935057489/87cec92cc98578584ac1b7825b19a939.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="718974084935057489" style="color: rgb(255,138,34)" title="tremb#3692">tremb</span>
+<span class="chatlog__timestamp">19-Nov-21 04:46 PM</span>
+<div class="chatlog__message" data-message-id="911386970251489320" id="message-911386970251489320" title="Message sent: 19-Nov-21 04:46 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><span class="pre pre--inline">{     Wrenpaw     }</span>
+
+Wrenpaw recoiled at the heavy blow dealt by Hollowgrove, though only momentarily as she prepared herself for this battle. Hollowgrove was no doubt a formidable warrior, but Wrenpaw was determined to prove herself, and planned to put everything she had learned in the Dark Forest to good use. <strong>”You’re a no good, filthy traitor!”</strong> She screeched, throwing herself at the warrior with every ounce of strength her hind legs could muster. Even if Wrenpaw was no match for this cat, there was no way she was going down without a fight. She wasn’t going to make this easy on the Dark Forest loyalist. <span class="mention" title="wild#9017">@wild™</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/184134495488704513/5c4756b9297842bd778f451f8dfffbbd.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="184134495488704513" style="color: rgb(119,102,221)" title="JennyFromTheRift#0113">Jennstar</span>
+<span class="chatlog__timestamp">19-Nov-21 04:46 PM</span>
+<div class="chatlog__message" data-message-id="911387031085674556" id="message-911387031085674556" title="Message sent: 19-Nov-21 04:46 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">Deerbounce</div>
+<span class="mention" title="✧*̥˚ snips *̥˚✧#1759">@fuzz</span> <span class="mention" title="agatedemon#5698">@prim</span> 
+
+The dark forest warrior snickered as the apprentice sank her teeth into her hind leg. <strong>"Pathetic."</strong> she sneered, before kicking out with said leg, sending Viperpaw rolling backwards. 
+
+She gasped in breathlessness as she was slammed against the wall, loosening her grip on the black she cat. She snarled, leaping forward again and slashing her claws at Hollyfrosts shoulders, bloodlust fueling her movements.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/829762549103984750/1b040f01808ffc415d6cbf7b1d9c817b.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="829762549103984750" style="color: rgb(46,204,113)" title="Shade#2140">Shade</span>
+<span class="chatlog__timestamp">19-Nov-21 04:49 PM</span>
+<div class="chatlog__message" data-message-id="911387769169903646" id="message-911387769169903646" title="Message sent: 19-Nov-21 04:49 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace">Wolfprowl keeps fighting. (open)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/660967752265236481/bf0578ee2ebf7136379fd9d38e5fa032.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="660967752265236481" style="color: rgb(46,204,113)" title="Goosey !!!#8608">goose</span>
+<span class="chatlog__timestamp">19-Nov-21 04:50 PM</span>
+<div class="chatlog__message" data-message-id="911387912686424114" id="message-911387912686424114" title="Message sent: 19-Nov-21 04:50 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><span class="mention" title="Shade#2140">@Shade</span>  Tigerpaw joined him with a sprained ankle</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/395274063611953154/f5406857dcf23847106738b88fa0d66d.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="395274063611953154" style="color: rgb(255,213,83)" title="wild#9017">wild™</span>
+<span class="chatlog__timestamp">19-Nov-21 05:04 PM</span>
+<div class="chatlog__message" data-message-id="911391450170814524" id="message-911391450170814524" title="Message sent: 19-Nov-21 05:04 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline language-fix">───────── 𝐇𝐎𝐋𝐋𝐎𝐖𝐆𝐑𝐎𝐕𝐄 !! // WARRIOR OF THUNDERCLAN</div>
+
+Hollowgrove knew that she could make quick work of this apprentice, but having already battled another feline, the warrior already had lost some of her energy and thus, it would take a bit more effort than usual. With a snarl, Hollowgrove was brought to the ground, tumbling over and over as the two felines fought. <strong>"Traitor? Your clan deserves this!"</strong> she cried, attempting to aim little blows here and there. The braided tabby's eyes narrowed as the two somewhat paused in their progression, a hissing bundle of fur.
+    <strong>"Some nerve you have coming after one of those who held you hostage!"</strong> came a hiss from the warrior, as she bit down on Wrenpaw's ear. She didn't hesitate to hold back, ripping it violently as scarlet sprayed from it, beginning to ooze out. Now, she raised a paw to attempt to whack the apprentice. There'd be no mercy shown and she'd learn that quickly.
+
+<span class="mention" title="tremb#3692">@tremb</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/231502872297078804/c84de6e5cf3c3288948a581986a61221.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="231502872297078804" style="color: rgb(46,204,113)" title="Iceywicey#3780">Ice</span>
+<span class="chatlog__timestamp">19-Nov-21 05:04 PM</span>
+<div class="chatlog__message" data-message-id="911391605435531264" id="message-911391605435531264" title="Message sent: 19-Nov-21 05:04 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{ ~ Icestar ~ }</div>
+Silentwing wasn’t just here to talk. That was obvious considering the malicious femme brought an entire army with her. Subtly, Icestar’s paws shifted into position. She couldn’t fool around like she did with Needlestripe. To have survived this long, either the tortoiseshell was a coward or formidable. The latter was more likely considering she wiped out a good number of ThunderClan warriors with her own claws. 
+
+Her gaze darkened significantly, the sea-coloured embers of her eyes sparking as Silentwing attacked. This time, she didn’t allow herself to be captured by any slicing claws. Icestar reared back and spun out of the way. Gaining momentum with the added bonus of gravity, she slammed her white mittens down onto Silentwing’s own paws. <strong>” I think you’re wrong,”</strong> she hissed into the ghost’s ears. 
+<span class="mention" title="agatedemon#5698">@prim</span> <span class="mention" title="springypaws777#8108">@Springy 🦤</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">19-Nov-21 05:06 PM</span>
+<div class="chatlog__message" data-message-id="911392137923420200" id="message-911392137923420200" title="Message sent: 19-Nov-21 05:06 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Laurelblaze}</div>
+She stiffened at the familiar sound of her former friend, approaching them with the intent on killing them both. Her stance grew firmer as she turned to face the other tortoiseshell, fury blazing in her odd gaze as she stared her down. Her fur was raggedy from battle, but she was hardly weakened, for she had been preparing for this moment. It was either them or Silentwing, and today would decide who got to walk away from this. <strong>”One last dance, and we’ll see who is truly the victor.”</strong> her growl was low, and her fur began to rise along her hackles and spine, framing her out like a glorious mane. She was prepared to die for her clan if it came to it.
+
+But she was more prepared to finally end Silentwing’s life, if it meant her clan would get to live another day.
+
+<strong>”Go crawl back into the hole you came out of, foxheart.”</strong> she hissed as she lunged at the Dark Forest she-cat who’d targeted Icestar first, preparing an onslaught of vicious slashes to take her down. 
+
+No mercy, not for a cat who’d killed more cats than she could count on her claws.
+
+<span class="mention" title="Iceywicey#3780">@Ice</span> <span class="mention" title="springypaws777#8108">@Springy 🦤</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/718974084935057489/87cec92cc98578584ac1b7825b19a939.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="718974084935057489" style="color: rgb(255,138,34)" title="tremb#3692">tremb</span>
+<span class="chatlog__timestamp">19-Nov-21 05:14 PM</span>
+<div class="chatlog__message" data-message-id="911394006896877631" id="message-911394006896877631" title="Message sent: 19-Nov-21 05:14 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><span class="pre pre--inline">{     Wrenpaw     }</span>
+
+A loud screech erupted from Wrenpaw’s jaws, a mixture of horrible pain and fury as her ear was torn away from her skull, blood gushing down the side of her face. She leaped away from the warrior, staggering slightly as pain shot through her body. <strong>”You piece of crow food, you’ll pay for everything that you’ve done!”</strong> She howled, throwing herself back towards Hollowgrove, driven by hatred and fury. She struck out, aiming the heaviest blows she could manage before inevitably being overthrown by the larger cat once more. 
+
+<strong>”Did you ever stop to think that I came after you <em>because</em> you held me captive you flea pelt? You’ll regret underestimating me!”</strong> She screeched, desperately trying to land blows on any part of Hollowgrove that she could reach. <span class="mention" title="wild#9017">@wild™</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">19-Nov-21 05:18 PM</span>
+<div class="chatlog__message" data-message-id="911394952754389022" id="message-911394952754389022" title="Message sent: 19-Nov-21 05:18 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Viperpaw}</div>
+As she was sent rolling backwards, Viperpaw shook out her fur as she tried to rid if of any dirt before she launched herself back towards Deerbounce, desperately trying to assist her mother… Who looked bloodied, badly bloodied.
+
+<strong>”I won’t let you hurt her! I’ll tear your heart out!”</strong> she was mostly all talk considering how small she was and inexperienced in battle, but she was going to protect her mother, of course she had to sound tough? <strong>”You hear me? I’ll kill you! I’ll kill you dead for this!”</strong> ever the fierce little fighter, Viperpaw was summoning all of her courage to fight for her mother, to defend her.
+
+<em>She threw herself in front of her to save me. I can’t… I can’t let her fight this battle alone!</em>
+
+Viperpaw began to try and scrape at Deerbounce’s side, targeting her while her mother had her slammed against the wall, they could defeat her together!
+
+<span class="mention" title="JennyFromTheRift#0113">@Jennstar</span> <span class="mention" title="✧*̥˚ snips *̥˚✧#1759">@fuzz</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/395274063611953154/f5406857dcf23847106738b88fa0d66d.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="395274063611953154" style="color: rgb(255,213,83)" title="wild#9017">wild™</span>
+<span class="chatlog__timestamp">19-Nov-21 05:22 PM</span>
+<div class="chatlog__message" data-message-id="911396072109252678" id="message-911396072109252678" title="Message sent: 19-Nov-21 05:22 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline language-fix">───────── 𝐇𝐎𝐋𝐋𝐎𝐖𝐆𝐑𝐎𝐕𝐄 !! // WARRIOR OF THUNDERCLAN</div>
+
+A feeling of satisfaction arose within the molly, as a screech came from Wrenpaw. <em>That'll show her.</em> She grimaced as the apprentice connected a heavy blow to her face, the feeling of warm blood seeping out of the fresh wound. With a low growl, the warrior threw the apprentice off of her, watching as she tumbled onto the ground a short distance away. She was just as annoying as Tigerspring was, if not more so.
+    <strong>"Oh really? You're making a fool of yourself!"</strong> a harsh bark of laughter sounded from Hollowgrove as she leapt at the apprentices, claws outstretched as she brought her down upon the ground again, slicing her claws down between her shoulders. She then leaped away, lashing out with a kick toward her hindquarters as she did so to prevent her from simply connecting another blow from behind her - or at least, to keep her from doing so as quickly.
+
+<span class="mention" title="tremb#3692">@tremb</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/619280506885767189/574cf5007bc8291f9ce7b0ed888bdb80.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="619280506885767189" style="color: rgb(255,213,83)" title="springypaws777#8108">Springy 🦤</span>
+<span class="chatlog__timestamp">19-Nov-21 05:29 PM</span>
+<div class="chatlog__message" data-message-id="911397899366170664" id="message-911397899366170664" title="Message sent: 19-Nov-21 05:29 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">Silentwing • The Battle</div>
+
+Silentwing's intended outcome came out unsuccessful, at the moment, at least.  First, her paws collided with those of Icestar's for just a moment, but before she could make much of a move, she was pushed away by paws of a bit of a larger size.  A scowl spread across her maw and a hiss exited her throat just before she was about to hit the ground.  But, by now, she was far too experienced.  As the ground came closer, Silentwing moved her legs just in time, catching herself with her shoulders in a much less painful landing.  As she felt her limbs touch the browning grass beneath, she sprung up with a quick, strong motion, pushing the hulking deputy enough to put her off of her footing for a moment.  With the small moment, she took her chance and escaped from Laurelblaze's grasp, even if it was only for a few seconds.  She could feel where she would one time have seen crimson, aware of the claws digging into her flank with the attack.</span>
+</div>
+</div>
+</div>
+<div class="chatlog__message" data-message-id="911398043583139881" id="message-911398043583139881" title="Message sent: 19-Nov-21 05:30 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace">-
+            Initially, ending Icestar had been Silentwing's goal.  But changing her sights onto the larger of the two would get one problem out of the way.  This was only going to delay her success, and she was aware of that.  Despite how agitating it was, Silentwing would discard this challenge just as she had in the past.  Laurelblaze was a recurring problem, one that she had just failed to get rid of until now.  But she wouldn't let the deputy's existence roam on much longer, not on the earth that she calls home.  No, this would be the end of her, Icestar, and Thunderclan as a whole.  The thought brought a wicked smile to her face, the charm fading for a moment as she imagined the deaths she could give the cats in front of her.  <em><strong><em>"That's a dance that I'll win, and a hole you'll join."</em></strong></em> She hissed, before leaping towards Laurelblaze.  She knew by now that Laurelblaze couldn't be killed in one swoop like Beetlestreak had at Deerbounce's paws, and so she would try a different approach.  Springing to the side, Silentwing used the ground to push off of, causing her to fly towards Laurelblaze's legs, claws unsheathed and ready.  What was a giant, anyhow, without her legs?  
+
+<span class="mention" title="agatedemon#5698">@prim</span> @Iceywicey#3780</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">19-Nov-21 05:32 PM</span>
+<div class="chatlog__message" data-message-id="911398591829012551" id="message-911398591829012551" title="Message sent: 19-Nov-21 05:32 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace">( <span class="mention" title="Iceywicey#3780">@Ice</span> Springy’s tag didn’t work ^^)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/718974084935057489/87cec92cc98578584ac1b7825b19a939.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="718974084935057489" style="color: rgb(255,138,34)" title="tremb#3692">tremb</span>
+<span class="chatlog__timestamp">19-Nov-21 05:32 PM</span>
+<div class="chatlog__message" data-message-id="911398597621334086" id="message-911398597621334086" title="Message sent: 19-Nov-21 05:32 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><span class="pre pre--inline">{     Wrenpaw     }</span>
+
+The caramel furred molly crumpled to the earth as she was thrown by the warrior. Her ear was throbbing with pain and her muscles burning with exhaustion. The apprentice had never fought like this in her life. She thought back to a time when she was much more innocent, when she had admitted to Marigolddust how scared she was to be in her first battle. She had never expected it to be anything like this. Battling the most ruthless cats to walk the forest, fighting for her life. 
+
+A life she realized could easily be stolen from her today. 
+
+She writhed and thrashed, snarling viciously as Hollowgrove came crashing down on top of her, more painful caterwauls echoing from her as claws tore down her spine between her flanks. Searing pain shot through her, and for a moment her vision went blurry. There was no way she was going to win this fight, no matter how hard or valiantly she fought — she was simply outmatched. She groaned as the weight of the warrior lifted from her and a hefty kick was dealt to her hindquarters, dragging herself to her paws once more. <strong>”You’re the one who looks like a fool. I’ll fight you until my last breath leaves my body. For ThunderClan.”</strong> She said. 
+
+It was clear that the apprentice was on her last legs. Blood still poured from her ear, and now crimson streams flowed down both of her shoulders, staining her golden fur. <strong>”Come on, traitor. Give me your worst,”</strong> she taunted, now poised and ready for the next attack. If she was going to die now, she was going to go out with claws flying and teeth snapping. <span class="mention" title="wild#9017">@wild™</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/251196337197023242/180cfd511eaaa49edb5782c745502004.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="251196337197023242" style="color: rgb(46,204,113)" title="✧*̥˚ snips *̥˚✧#1759">fuzz</span>
+<span class="chatlog__timestamp">19-Nov-21 05:41 PM</span>
+<div class="chatlog__message" data-message-id="911400726436147231" id="message-911400726436147231" title="Message sent: 19-Nov-21 05:41 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline language-css">hollyfrost || lieutenant of thunderclan</div>
+<div class="quote"><div class="quote-border"></div><div class="quote-content">Tears spring to emerald eyes and Hollyfrost hisses in pain. She swings around to catch Deerbounce by the jaw, hopefully sending the smaller, thinner cat sprawling.
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content">Blood drips from open wounds cross back and shoulders but Hollyfrost gives no sign of slowing down. The dark molly shakes her pelt free of matted tufts and blood splatters the ground as she turns the tables on Deerbounce now. 
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content">"Viper, go low!" she barks, leaping above the wretched invader to land squarely on her shoulders, paws and claws extended.
+</div></div><span class="mention" title="agatedemon#5698">@prim</span> <span class="mention" title="JennyFromTheRift#0113">@Jennstar</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/231502872297078804/c84de6e5cf3c3288948a581986a61221.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="231502872297078804" style="color: rgb(46,204,113)" title="Iceywicey#3780">Ice</span>
+<span class="chatlog__timestamp">19-Nov-21 05:44 PM</span>
+<div class="chatlog__message" data-message-id="911401498250985502" id="message-911401498250985502" title="Message sent: 19-Nov-21 05:44 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{ ~ Icestar ~ }</div>
+Did Silentwing seriously think she could take on the two of them on her own? If this was her grand scheme to end their reign as ThunderClan’s highranks, she was doing quite a terrible job. 
+
+<strong>” You must truly have several loose screws,”</strong> Icestar commented as Laurelblaze slammed into their opponent and sent the two of them flying off. The fury was radiating off of the calico and Icestar knew that her own was equal in magnitude. She had enough of Silentwing harming anyone. She was a pest that needed to be extinguished.
+
+Bursting into action, Icestar slipped underneath Silentwing before the deceased femme could reach Laurelblaze’s legs. A quick rake with her claws and the lynx-point slipped back out with ease. A simple but effective attack that left blood beading out from the trail she had made on the pale stomach. The more complex ones were for when Silentwing really pissed her off which wouldn’t take much longer.
+<span class="mention" title="springypaws777#8108">@Springy 🦤</span> <span class="mention" title="agatedemon#5698">@prim</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">19-Nov-21 05:45 PM</span>
+<div class="chatlog__message" data-message-id="911401742854406194" id="message-911401742854406194" title="Message sent: 19-Nov-21 05:45 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Shrikecatcher}</div>
+The burly young tom had been fighting through the sea of traitors swarming their camp, scratches and bite wounds lining his frame as he was fighting his way through towards a particular warrior holding an apprentice in a death grip. He had to be quick, he had to help! Almost as if he were swooping in before Hollowgrove could deal a full-on death blow to Wrenpaw, Shrikecatcher leapt onto the she-cat and sank his long claws into her frame. <strong>”You’re not harming anyone today, bud!”</strong> he hissed as he shoved the other warrior off of Wrenpaw’s form, his blue-gray tabby fur bristling as he confronted Hollowgrove. Now was the time to step in and save another’s life, he had to help!
+
+<strong>”Go! Get to safety, you’ve fought hard enough!”</strong> he turned back towards the caramel molly laying down on the ground below. <strong>”I’ll handle Hollowgrove, go! Get to Marigolddust!”</strong> he flashed her an easy-going smile, ever the positive warrior in the face of adversity. He’d provide her a distraction so she could get to safety. It was time for Hollowgrove to pick on a warrior her own size.
+<span class="mention" title="wild#9017">@wild™</span> <span class="mention" title="tremb#3692">@tremb</span> <span class="mention" title="springypaws777#8108">@Springy 🦤</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/184134495488704513/5c4756b9297842bd778f451f8dfffbbd.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="184134495488704513" style="color: rgb(119,102,221)" title="JennyFromTheRift#0113">Jennstar</span>
+<span class="chatlog__timestamp">19-Nov-21 05:49 PM</span>
+<div class="chatlog__message" data-message-id="911402790629281792" id="message-911402790629281792" title="Message sent: 19-Nov-21 05:49 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">Deerbounce</div>
+<span class="mention" title="agatedemon#5698">@prim</span> <span class="mention" title="✧*̥˚ snips *̥˚✧#1759">@fuzz</span> 
+
+As the two Thunderclan cats fought her side by side, Deerbounce narrowed her gaze. She was growing tired of this. Their side was losing, becoming ever more apparent by the fact that their prisoners had escaped and joined the fray. <em>These cats are useless...</em> she thought bitterly. She had had enough.
+
+She whipped around, decking Viperpaw across her head with her paw, blood spraying as her claws sliced just above the apprentices eye. She sent her flying away, before turning back to the bloody black furred warrior. 
+
+<strong>"Ive had my fun...lets finish this, shall we?"</strong> she purred in a sickly sweet voice, before launching herself full force at Hollyfrost once more. Her paws landed square on the warriors chest, propelling her straight into the rocky wall that marked the edge of Thunderclans camp. There was a sickening thud that rang out as Hollyfrosts skull crashed against the rock.
+Deerbounce grinned maliciously, eyes filled with hatred and bloodlust.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/395274063611953154/f5406857dcf23847106738b88fa0d66d.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="395274063611953154" style="color: rgb(255,213,83)" title="wild#9017">wild™</span>
+<span class="chatlog__timestamp">19-Nov-21 05:49 PM</span>
+<div class="chatlog__message" data-message-id="911402944006610985" id="message-911402944006610985" title="Message sent: 19-Nov-21 05:49 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline language-fix">───────── 𝐇𝐎𝐋𝐋𝐎𝐖𝐆𝐑𝐎𝐕𝐄 !! // WARRIOR OF THUNDERCLAN</div>
+
+This was all too easy. As she whipped around to face the apprentice, half expecting to meet claws in front of her face, Hollowgrove was met with something else. Wrenpaw still laid upon the ground, a scarlet pool already beginning to form around her. Was this really the end of her so soon? Honestly? The warrior allowed for a cruel sneer to appear on her face, watching as the molly managed to rise. But her mere posture and gaze betrayed her - there wasn't much life left in her, regardless of her words. And she knew it. They both did.
+    <strong>"Seems like you will. Some would deem your actions brave, admirable even."</strong> she spat, eyes poised upon the same spot where she'd laid the final blow against Tigerspring. <strong>"But they are merely foolish actions. Ones that'll end you."</strong> As the warrior stalked forward, her tail lashed out behind her, her fangs slowly appearing and jaws beginning to part. Yet she paused a pace or two from the apprentice, as if taunting her. An odd look appeared in her gaze.
+    <strong>"My worst? My dear...you've requested death."</strong> As quick as lightning, Hollowgrove bolted forward and with an unsheathed claw, sliced Wrenpaw's neck. Believing that would be the end of her, the warriors whipped around, perhaps for a final blow...only to be knocked away. A grunt sounded from her as she hit the ground, the stinging feeling of claws sinking into her causing her to grimace, a hiss escaping her. <strong>"And yet another fool...you will pay for your actions! I was doing her a favor!"</strong> she cried, lashing out at the tom with an unsheathed paw, just as he turned his attention back to her. No one was going to ruin this for her! No one.
+
+<span class="mention" title="tremb#3692">@tremb</span> <span class="mention" title="agatedemon#5698">@prim</span> <span class="mention" title="springypaws777#8108">@Springy 🦤</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/718974084935057489/87cec92cc98578584ac1b7825b19a939.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="718974084935057489" style="color: rgb(255,138,34)" title="tremb#3692">tremb</span>
+<span class="chatlog__timestamp">19-Nov-21 06:01 PM</span>
+<div class="chatlog__message" data-message-id="911405750084071524" id="message-911405750084071524" title="Message sent: 19-Nov-21 06:01 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><span class="pre pre--inline">{     Wrenpaw     }</span>
+<em>My dear… you’ve requested death.</em> Perhaps she had. For all Wrenpaw knew, today would be her last. She was terrified. She tried to defend herself from Hollowgrove’s final blow, but she wasn’t fast enough. Claws ripped through the skin on her throat, and yet another stream of crimson bathed the ivory fur on Wrenpaw’s chest. The wound was deep, but lucky for the apprentice it was just shallow enough to prevent her from bleeding every scarlet drop from her body. That was, until Hollowgrove prepared for another blow. Wrenpaw winced, sending a silent prayer to StarClan as she prepared herself for the end. Alas, the blow never came. Orange eyes opened to see Shrikecatcher batting Hollowgrove away, and a shaky sigh of relief left the apprentice’s chest. <em>Get to Marigolddust!</em> Wrenpaw’s eyes widened. She hadn’t even seen the tuxedo in days, and a sudden wave of worry washed over her. She stumbled, sticky and warm with her own blood in the direction of his den. Would he even be there? 
+
+Her breaths were ragged as she limped pathetically through the crowd of cats, tears welling up in her eyes. <strong>”Marigolddust! Marigolddust, help me!</strong>” She cried, using all of her effort to make the words loud enough to hear over the battle cries. <em>Please let him be okay. Please let him find me,</em> she thought desperately. She’d almost reached the medicine den when her legs failed her, and she slumped to the earth in a pool of her own blood. <span class="mention" title="springypaws777#8108">@Springy 🦤</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">19-Nov-21 06:03 PM</span>
+<div class="chatlog__message" data-message-id="911406288385212476" id="message-911406288385212476" title="Message sent: 19-Nov-21 06:03 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Laurelblaze}</div>
+The ThunderClan deputy snarled as Silentwing managed to escape from her grip, only to be targeted next. Her fur was bristling, and she went back on the offensive when Icestar had decided to thwart Silentwing’s attempt of an attack against her legs. <strong>”Well, you’re losing your touch, Silentwing. Can’t even keep up with me of all cats!”</strong> she scrunched up her nose as she taunted her enemy, preparing to pounce on her and attempt to tackle her to the ground, if she didn’t slip out of her range before she could. They needed to finish her, so they never had to see her ugly mug ever again. They lost too many cats to her, too many friends, family members, they had to see to it that they received proper justice. To know their killer would never again bring harm to another living being.
+
+<em>For Cloverhill, and Reedshine…</em>
+
+Laurelblaze yowled as she began her onslaught, charging at the former WindClanner with nothing but pure hatred in her gaze as she attempted her tackle, her paws outstretched as she launched herself at her. They were not going to hesitate, they had to fight for their lives here!
+
+<span class="mention" title="Iceywicey#3780">@Ice</span> <span class="mention" title="springypaws777#8108">@Springy 🦤</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">19-Nov-21 06:23 PM</span>
+<div class="chatlog__message" data-message-id="911411364696842270" id="message-911411364696842270" title="Message sent: 19-Nov-21 06:23 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Viperpaw}</div>
+She’d been following her mother’s orders, aiming low at Deerbounce’s sides, until she was suddenly slashed over her left eye, causing her to screech from pain. In it, all she could see was red, but her vision in with was blurry— but it was from the blood that was blinding her in that eye. It was the lid that was slashed, not the eye itself. She tried to wipe away her blood that was streaming into her line of sight, shaking her head from the pain of the slash as she attempted to come back to her mother’s aid… Only to hear a loud <em>thud</em> as her mother was slammed against the stone wall of the quarry— murderous intent in the other she-cat’s gaze.
+
+<strong>”No…”</strong> she whispered aloud, her eyes widening as she felt tears welling up around her gaze as she stared up at Deerbounce, before it was replaced with pure and utter rage. She let out a loud cry of fury, pain evidently straining her voice as she threw herself at her mother’s assailant. <strong>”You’ll pay for that! Every last wound on her body! I’ll destroy you! I’ll rip your head off!”</strong> she was yowling, assuming the worst of her mother’s fate, she was acting reckless… But what else could she do? She had to fight to avenge her family, to protect them from the enemies set on destroying them. She wouldn’t allow them to escape.
+
+<span class="mention" title="JennyFromTheRift#0113">@Jennstar</span> <span class="mention" title="✧*̥˚ snips *̥˚✧#1759">@fuzz</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">19-Nov-21 06:41 PM</span>
+<div class="chatlog__message" data-message-id="911415910483492924" id="message-911415910483492924" title="Message sent: 19-Nov-21 06:41 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Shrikecatcher}</div>
+<strong>”I may be a fool, but I know for certain I’m much smarter than you are than to betray ThunderClan!” The blue-gray tabby tom had to keep Hollowgrove from trying to capture Wrenpaw and harming her further, he’d give her a good thrashing she wouldn’t forget. </strong>”You know, you’re pretty cowardly for targeting an apprentice who isn’t even nearly as experienced in fighting as you are. Talk about being a total wimp!”<strong> he was taunting Hollowgrove to keep her attention drawn on him. So what if he took a few blows, he was strong enough to take it. He was big, and he could take it, he had to be a shield here so Wrenpaw and the others could escape. </strong>”I think you should just give up already, your buddies have already been captured, you think you can take an entire clan by yourself? I don’t think so!”** he smirked lightly as he aimed a few blows at her back and shoulders, trying to knock her to the ground. He wasn’t one for murder, so he’d be trying to hold back, but he did want to try and restrain her if he could… Unless she didn’t give him a choice but to strike her down.
+
+<span class="mention" title="wild#9017">@wild™</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/619280506885767189/574cf5007bc8291f9ce7b0ed888bdb80.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="619280506885767189" style="color: rgb(255,213,83)" title="springypaws777#8108">Springy 🦤</span>
+<span class="chatlog__timestamp">19-Nov-21 06:55 PM</span>
+<div class="chatlog__message" data-message-id="911419330086965288" id="message-911419330086965288" title="Message sent: 19-Nov-21 06:55 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">Marigolddust • The Battle</div>
+
+The warrior and apprentices of the clan had received a task they didn't expect, or deserve, that day.  Battle had spring out through the camp after the capture of the apprentices assigned to spy on the traitors and their ring masters.  Now, fighting had broken out everywhere, cats of darkness and betrayal against those of flesh and nobility.  Marigolddust was not among the many fighting.  No, he was far too weak to fight, and although he was in as much danger as all of his clanmates, he couldn't bring himself to unsheathe his claws and play the offensive side.  Clan rules didn't apply here, yet he couldn't protect himself and jump into the fight.  Instead, he was gathering up all of the elders, kits, and queens that he could, bringing them into his den in hopes of providing them safety.  <em><strong><em>"Come on!  Into my den- it should be safer here,"</em></strong></em> he called, hushing a queen and her kits into the den he had come to call home.  If the den was attacked, he would need to try and finally bring out his teeth and his claws, but he offered them an unsuccessful attempt at a reassuring smile as they joined the others in his den.  It was filling up, but it had to make do.</span>
+</div>
+</div>
+</div>
+<div class="chatlog__message" data-message-id="911419353130483754" id="message-911419353130483754" title="Message sent: 19-Nov-21 06:55 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace">-
+                  Suddenly, his attention was dragged away and brought to the desperate call of a familiar voice.  His attention snapped to Wrenpaw, and when his eyes landed on her, his heart stopped.  It felt as if he was stuck in a pool of tar as he ran to his apprentice's side.  <em><strong><em>"Oh Starclan, Wrenpaw!  What happened?  Stay awake, stay awake-"</em></strong></em> he ordered, his voice seriously strict and panicky.  He was terrified as he realized rushed her into his den, trying to keep her out of the sight of the kits but also hurrying.  <em><strong><em>"I-t'll be okay, just- just dont close you're eyes, okay?  It'll be fine, I-I promise.."</em></strong></em> he choked, trying to hold back forming tears as he brought her to his pile of moss balls to try and find some wet moss for his dying apprentice.  
+
+<span class="mention" title="tremb#3692">@tremb</span> <span class="mention" title="agatedemon#5698">@prim</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/251196337197023242/180cfd511eaaa49edb5782c745502004.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="251196337197023242" style="color: rgb(46,204,113)" title="✧*̥˚ snips *̥˚✧#1759">fuzz</span>
+<span class="chatlog__timestamp">19-Nov-21 07:01 PM</span>
+<div class="chatlog__message" data-message-id="911420993367605248" id="message-911420993367605248" title="Message sent: 19-Nov-21 07:01 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline language-css">hollyfrost || lieutenant of thunderclan</div>
+<div class="quote"><div class="quote-border"></div><div class="quote-content">The world spins for a moment before it quite literally comes crashing down on the warrior's head. Pain explodes as ears are filled with rubble and the sound of bone contacting rock; the edges of her vision go blurry and a strangled cry gurgles from her throat.
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content">She barely registers Viperpaw diving forward as Hollyfrost slumps to the ground, head both spinning and fogged. The battle sounds far away; not even shaking her head is enough to regain the grip she had on reality a moment before. 
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content">It lasts for more than a few heartbeats. Her mouth is metallic, her crown clenched and splitting as the ebony fae staggers to her paws. The camp sways around her and she has to splay her legs to keep her footing. Teetering between this world and unconsciousness, spite lends aid to preventing her from slipping into darkness.
+</div></div>&gt; 
+<div class="quote"><div class="quote-border"></div><div class="quote-content">"Viperpaw, let her go," she manages to rasp out, shutting one eye as blood pours into it. The molly wipes the back of her paw across her nose, smearing crimson up her scratched cheek before spitting at Deerbounce's blurred form. "Go help the injured cats get to Marigold-dust's den. I'll handle her."
+</div></div><span class="mention" title="agatedemon#5698">@prim</span> <span class="mention" title="JennyFromTheRift#0113">@Jennstar</span></span>
+</div>
+</div>
+</div>
+<div class="chatlog__message" data-message-id="911421072618950766" id="message-911421072618950766" title="Message sent: 19-Nov-21 07:01 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><span class="mention" title='Jay said "MATERIAL GWORL"#0677'>@Jay said "MATERIAL GWORL"</span> <span class="mention" title="Iceywicey#3780">@Ice</span> for you <img alt="whatever" class="emoji" loading="lazy" src="https://cdn.discordapp.com/emojis/788437413218353183.gif" title="whatever"/> )</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/395274063611953154/f5406857dcf23847106738b88fa0d66d.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="395274063611953154" style="color: rgb(255,213,83)" title="wild#9017">wild™</span>
+<span class="chatlog__timestamp">19-Nov-21 07:04 PM</span>
+<div class="chatlog__message" data-message-id="911421774921596938" id="message-911421774921596938" title="Message sent: 19-Nov-21 07:04 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline language-fix">───────── 𝐇𝐎𝐋𝐋𝐎𝐖𝐆𝐑𝐎𝐕𝐄 !! // WARRIOR OF THUNDERCLAN</div>
+
+Yet another blow connecting. Hollowgrove could hardly stand it. Out of the corner of her gaze, she watched as Wrenpaw made her way toward the medicine cat den, her bloodied form seeming to stagger with any step. She was waiting, waiting...but her form was quickly lost in the crowd of battling felines, leaving the molly without knowledge on whether or not her wounds had truly been the death of her. No matter, for she had something else to worry about...namely, this warrior who believed he would be able to take her down.
+    <strong>"Oh really? I'll have you know she asked for it, otherwise I would've left her alone to die by the claws of another."</strong> she replied in turn, her frown deepening at the tom's taunts. So he was one of those fighters, hm? Being one to talk a whole bunch of smack yet displaying no sort of skill. A huff sounded from her, scarlet drops falling upon the ground as she stared down her target. <strong>"Oh? And face death?"</strong> a cackle rose from her. <strong>"I don't believe so! I'll kill you before I do anything else!"</strong> she cried, aiming another blow at the tom, before stumbling a pace or so away. <em>Silentwing...Deerbounce...</em> She couldn't fail them. And had his words been true? Had the others already fallen so quickly? <em>Shows their weakness. I'll stand til the end.</em> Breath becoming ragged once more, she forced it to even out. <strong>"Who knows. With the power of those who unleashed this upon your clan, I just might. One cat at a time."</strong> Again, she lashed out, whipping about to kick the tom, perhaps able to knock him off balance. There was no way she'd be going down so easily. Not now, not ever.
+
+<span class="mention" title="agatedemon#5698">@prim</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/184134495488704513/5c4756b9297842bd778f451f8dfffbbd.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="184134495488704513" style="color: rgb(119,102,221)" title="JennyFromTheRift#0113">Jennstar</span>
+<span class="chatlog__timestamp">19-Nov-21 07:14 PM</span>
+<div class="chatlog__message" data-message-id="911424119126491177" id="message-911424119126491177" title="Message sent: 19-Nov-21 07:14 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">Deerbounce</div>
+<span class="mention" title="✧*̥˚ snips *̥˚✧#1759">@fuzz</span> <span class="mention" title="agatedemon#5698">@prim</span> 
+
+The shadowy warrior rolled her eyes, giving a small cackle. 
+<strong>"Well, ive had my fun. Ill be on my way."</strong> she purred, before disappearing in a cloud of smoke.
+(In otherwords i need a nap before work in two hours and i cant come up with a more creative exit. XD)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/619280506885767189/574cf5007bc8291f9ce7b0ed888bdb80.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="619280506885767189" style="color: rgb(255,213,83)" title="springypaws777#8108">Springy 🦤</span>
+<span class="chatlog__timestamp">19-Nov-21 07:24 PM</span>
+<div class="chatlog__message" data-message-id="911426678096527420" id="message-911426678096527420" title="Message sent: 19-Nov-21 07:24 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">Silentwing • The Battle</div>
+
+The attack was unsuccessful.  Again.  Silentwing scowled as Icestar got in the way of her offense against Laurelblaze, sending her claws across the dark forest cat's flank.  Releasing a loud hiss, Silentwing quickly turned towards the leader.  Unlike what she had originally planned, it didn't seem like this would be a battle she could win by going one-on-one with the deputy and the leader separately.  They were taking the route that was far more effective, if not pitiful.  If a cat were to take another's life, she should get the credit, not some cat who might have been of assistance.  It was weak, leaving a battle to be won half-way by claws that were not your own.  Silentwing's glare disappeared behind a threatingly playful one, an expression daring Icestar to attack.  She had returned her cool, momentarily.  She shouldn't have lost it in the first place, although secretly, it still stood strong.  Confident charm was a good cover-up, and although the charm might have been a bit empty, her confidence was not.  These cats could try.  They could try over and over again.  But they wouldn't win, because she had a trick they could never imagine.  She just had to wait for the right time, the right place, and the right cat.  These two were both strong candidates, but she only had one feline in mind.  At least, for the show she would put on for everyone else present.  They will live to share the story of her name, and she would get the glory she had come to claim.</span>
+</div>
+</div>
+</div>
+<div class="chatlog__message" data-message-id="911426730231726160" id="message-911426730231726160" title="Message sent: 19-Nov-21 07:24 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace">-
+              A spark of cruel excitement flashed across her face at Icestar's comment.  <em><strong><em>"Loose screws are a small price to pay, darling,"</em></strong></em> she hummed, before Laurelblaze's voice met her ears once more.  Turning to face the deputy, a wicked smile displayed on her features, a smile which wavered ever so slightly at Laurelblaze's comment, a bit of her annoyance peeking through once more, although it was covered up again as quickly as one would cover up a truth with a lie.  <em><strong><em>"Fighting with words?  You can do so much better,"</em></strong></em> she commented cool-headedly, giving the tortoiseshell a sickeningly teasing wink.  Her eyes stayed on the mismatched gaze of the cat she had once called a friend- a friend who had betrayed her in the end.  Silentwing let the satsifactory idea of bringing this clan to an end once and for all fuel her next move; an attack to Laurelblaze's token Silentwing had left her, decorating her chest.  But the move had too much arrogance behind it, and she had been too confident in herself the moment she sprang.  She noticed the mistake as soon as her paws left the ground, but it was too late to fix it.  She had given them an opening point.  
+
+<span class="mention" title="agatedemon#5698">@prim</span> <span class="mention" title="Iceywicey#3780">@Ice</span></span>
+<span class="chatlog__edited-timestamp" title="19-Nov-21 07:34 PM">(edited)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">19-Nov-21 07:46 PM</span>
+<div class="chatlog__message" data-message-id="911432253500973127" id="message-911432253500973127" title="Message sent: 19-Nov-21 07:46 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Laurelblaze}</div>
+It was time for her to end this once and for all, and as she leaped towards Silentwing with her paws outstretched, she couldn't help but to notice that she was <em>smiling</em>. Not staring up at her in fear, but she was <em>smiling</em>.
+
+She knew something that she didn't.
+
+She got too cocky.
+
+She let her emotions get the better of her.
+
+Laurelblaze couldn't stop her attack mid-flight, for she was aiming directly towards Silentwing, her underside vulnerable to attack from the she-cat below, the fatal flaw of a grandiose tackle from above. A weakness that could easily be exploited, was Silentwing going to strike at her here? Was this it? What was she planning?
+
+Laurelblaze couldn't predict what she was going to do, and most certainly not what the Dark Forest tortoiseshell had planned next...
+
+<span class="mention" title="springypaws777#8108">@Springy 🦤</span> <span class="mention" title="Iceywicey#3780">@Ice</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/619280506885767189/574cf5007bc8291f9ce7b0ed888bdb80.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="619280506885767189" style="color: rgb(255,213,83)" title="springypaws777#8108">Springy 🦤</span>
+<span class="chatlog__timestamp">19-Nov-21 08:17 PM</span>
+<div class="chatlog__message" data-message-id="911440090746740757" id="message-911440090746740757" title="Message sent: 19-Nov-21 08:17 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">Silentwing • The Battle</div>
+
+Despite the poor leap off of the ground on Silentwing's part, she didn't need a good pounce in order to complete what she had in mind.  She needed to get Laurelblaze out of the picture, even if doing so meant that Icestar's end had to wait a moment.  Silentwing and Laurelblaze had unfinished business, and perhaps that would end here, before it ended for the leader that could only watch as Silentwing finally reached Laurelblaze.  
+
+             Rather than land on top of Laurelblaze or sending a deadly blow down onto Laurelblaze's throat, she kept her sights on the scars on the tortoiseshell's chest, landing on the ground rather than on her opponent.  Giving such a killing blow would be too quick, not nearly as effective as she wanted Laurelblaze's last moments to be.  No, instead of digging claws into flesh, Silentwing thrust a paw into Laurelblaze's chest.  The attack would be anything but expected, and it was a trick that Silentwing had been keepinh in secret to display in this moment.  Or, rather, a future moment.  This would just be a little show, a display for all of the cats around them; an event that would make the cats of Thunderclan fear her as they should.  Silentwing's smile widened as her eyes stayed on Laurelblaze's, an evil and knowing look in her eye.  Now was her time.  Silentwing's paw was no longer visible, being hidden by the flesh and fur of Laurelblaze's chest.  Silentwing didn't stop until she could feel the power of the fragile organ beating in the deputy's chest, and once she could feel the power of fists beating against her paw, she closed her claws around it.  With one quick, powerful movement, Silentwing pulled against the power her claws had hooked around, bringing it part way out of Laurelblaze's form and into the open.</span>
+</div>
+</div>
+</div>
+<div class="chatlog__message" data-message-id="911440138280796190" id="message-911440138280796190" title="Message sent: 19-Nov-21 08:17 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace">-
+              Silentwing didn't let go of this new force that she had trapped in her grasp, and instead, she examined it with satisfied pride.  Laurelblaze's soul was trapped between her clawed toes, unable to escape the grape of the dark forest cat.  No look of surprise or fear was shown on the Windclanner's face as she took in her work, and a large grin was displayed instead as her dark, cold eyes met Icestar's.  The deputy's soul was still connected to her body, only part way out of her chest, but it was enough of an event to give any cat a scare.  Silentwing's crazed joy in the sight of it was just the cherry on the top.  <em><strong><em>"Well, what do you think?  I learned a trick or two during my time in that forest you seem to despise so much.  I don't know, I kinda like it, hm?"</em></strong></em> She spoke the words casually, an unsettling chill filling blanketing her tone.
+
+<span class="mention" title="agatedemon#5698">@prim</span> <span class="mention" title="Iceywicey#3780">@Ice</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/231502872297078804/c84de6e5cf3c3288948a581986a61221.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="231502872297078804" style="color: rgb(46,204,113)" title="Iceywicey#3780">Ice</span>
+<span class="chatlog__timestamp">19-Nov-21 08:37 PM</span>
+<div class="chatlog__message" data-message-id="911445033864007700" id="message-911445033864007700" title="Message sent: 19-Nov-21 08:37 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{ ~ Icestar ~ }</div>
+Everything happened too fast for her mind to process. The inviting glare of Silentwing was enough for Icestar to leap forward. That was when it all came down. The swipe of the Dark Forest warrior’s at Laurelblaze’s exposed chest. The deputy’s counter-attack and their collision. Something wasn’t right. With a darkened expression on her masked face, Icestar skidded to a halt, sending stray pebbles scattering in their direction.
+
+She blinked in shock as Silentwing’s paw <em>disappeared</em> into Laurelblaze’s body and pulled out a translucent form that resembled that of her deputy. 
+
+<strong>” What are you doing!?”</strong> Icestar snarled, baring her canines menacingly. She met the ice-cold eyes of the joyous psychopath. Her own gaze was a torrential wave of blue-green flames. She felt murderous but she didn’t dare take a step closer. If that faint glow was what she suspected it to be, she was at the mercy of Silentwing’s will. 
+
+<strong>” Murder her and I will have you begging to be killed!”</strong> The silvery-white leader spat out. 
+<span class="mention" title="agatedemon#5698">@prim</span> <span class="mention" title="springypaws777#8108">@Springy 🦤</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/250995440281976832/5da39f9d14d3e36948c248669ec5af05.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="250995440281976832" style="color: rgb(17,170,255)" title="agatedemon#5698">prim</span>
+<span class="chatlog__timestamp">19-Nov-21 08:37 PM</span>
+<div class="chatlog__message" data-message-id="911445202290507857" id="message-911445202290507857" title="Message sent: 19-Nov-21 08:37 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">{Laurelblaze}</div>
+It was in an instant that she was no longer soaring through the air, instead, her physical form was just standing there, a stunned expression stuck on its face... But she was not in control. She couldn't move, both forms were unable to free themselves, Silentwing held her in her grip.
+
+<em>Am I dead?</em>
+
+No, if she had died, she would have woken up in StarClan, she was <em>outside</em> of her body. Her soul was partially suspended, drawn out by Silentwing, completely at her mercy. She stared down at the former WindClanner, her jaw parted as she stared through her partially translucent paws, and back to her actual body. <strong>"Y-You!"</strong> her voice had a reverb, a slight echo to it as she glanced around, unable to free herself. <strong>"Release me! I don't need a body to kill you!"</strong> she snarled aloud, swiping her paws at Silentwing, but they merely phased through her.
+
+This was not her true form, because she was not actually dead, her soul did not contain the power of a StarClan cat that could defend itself, nor did it hold the power her physical body had. She couldn't fight back.
+
+<span class="mention" title="springypaws777#8108">@Springy 🦤</span> <span class="mention" title="Iceywicey#3780">@Ice</span></span>
+<span class="chatlog__edited-timestamp" title="19-Nov-21 09:47 PM">(edited)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chatlog__message-group">
+<div class="chatlog__author-avatar-container">
+<img alt="Avatar" class="chatlog__author-avatar" loading="lazy" src="https://cdn.discordapp.com/avatars/817917568034799626/9ea6fe67241e82df24f1c278e6ae19ab.png?size=128"/>
+</div>
+<div class="chatlog__messages">
+<span class="chatlog__author-name" data-user-id="817917568034799626" style="color: rgb(46,204,113)" title="Fawnleap//Toffmel#5591">Fawn</span>
+<span class="chatlog__timestamp">19-Nov-21 10:17 PM</span>
+<div class="chatlog__message" data-message-id="911470272605995011" id="message-911470272605995011" title="Message sent: 19-Nov-21 10:17 PM">
+<div class="chatlog__content">
+<div class="markdown">
+<span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">🌻 nectarglade🌻 </div>
+
+the cream and orange calico she-cat looked around, and she couldn't tell who was friend or foe, with the knowledge of her clanmates' betrail she didn't know who to trust. she began attacking whoever came at her, even if it was possibly by accident, yowling with rage <em>Nectarglade don't do this! what if you end up hurting some innocent cat?!</em>. she threw this thought aside though, <em>i don't know who to trust! what if others have betrayed and are ready to attack me at any moment?!</em>.
+
+the she-cat finally began diving into battle, blinded by rage <em>one day the camp is destroyed, then cats start becoming sick, now this??? what's next StarClan?!** felt claws tore at her pelt, and blood began to spatter on her coat, and she felt a searing pain running across her side. she looked through her one good eye, trying to decide who was good or bad, but alas she wasn't able to differentiate the crowd around her. she continued her attacking, pain striking her both physically and emotionally *these were cats i trusted with my life if i don't know who to trust why am i still here?</em>. that's then she was leapt upon, the breath was driven out of her, as she lay scrambling, but the cat's claws continued towards its target, leaving her more and more weary as it went on. she began blindly trying to attack but her paws never touched the cat. she was in a daze, weak from pain, she felt blood welling up from her wounds, and especially a large wound on her side and chest, she finally gave up, and she felt her body go limp, as she struggled to keep her eyes open. the cat lept from her and joined in the fray once more, but she remained there, unable to move, her body felt like it had fought a thousand battles, maybe tenfold that. the world became blurry soon, and she heard the sounds that had moments ago been so loud being drowned out, and though she fought to stay awake she feared that she wouldn't be awake much longer.
+
+(open??? @ anyone???)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div style="text-align:center; margin: 2em;">
+<a href="page1.html">« First</a> <a href="page19.html">‹ Prev</a> <a href="page17.html">« -3</a> <strong>Page 20 of 29</strong> <a href="page23.html">+3 »</a> <a href="page21.html">Next ›</a> <a href="page29.html">Last »</a> 
+</div>
+</body>
+</html>
